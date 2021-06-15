@@ -924,7 +924,27 @@ The header part is used for storing message type, destination id, source id, mes
                   </ul>
                 </li>
                 </ul>
+              <h3>What is a pipe?</h3>
+              <p>
+                Pipe is a communication medium between two or more related or interrelated processes. It can be either within one process or a communication between the child and the parent processes. Communication can also be multi-level such as communication between the parent, the child and the grand-child, etc. Communication is achieved by one process writing into the pipe and other reading from the pipe. To achieve the pipe system call, create two files, one to write into the file and another to read from the file.
+                
+                Pipe mechanism can be viewed with a real-time scenario such as filling water with the pipe into some container, say a bucket, and someone retrieving it, say with a mug. The filling process is nothing but writing into the pipe and the reading process is nothing but retrieving from the pipe. This implies that one output (water) is input for the other (bucket).</p>
+                <img src="./Pipe.PNG"/>
+                <h2>Zombie Process</h2>
+                <p>When a process is created in UNIX using fork() system call, the address space of the Parent process is replicated. If the parent process calls wait() system call, then the execution of parent is suspended until the child is terminated. At the termination of the child, a ‘SIGCHLD’ signal is generated which is delivered to the parent by the kernel. Parent, on receipt of ‘SIGCHLD’ reaps the status of the child from the process table. Even though, the child is terminated, there is an entry in the process table corresponding to the child where the status is stored. When parent collects the status, this entry is deleted. Thus, all the traces of the child process are removed from the system. If the parent decides not to wait for the child’s termination and it executes its subsequent task, then at the termination of the child, the exit status is not read. Hence, there remains an entry in the process table even after the termination of the child. This state of the child process is known as the Zombie state.</p>
+                <h3>Ways to prevent creation of zombie process</h3>
+                <ul>
+                  <li>Using wait system call</li>
+                  <li>Using SIGNAL(SIG_CHLD,SIG_IGN)</li>
+                  <li>Using signal handler</li>
+                </ul>
+               <b> <h3>What are the maximum number of zombie process system can handle?</h3></b>
+                <p>
+                  Basically, Zombie Process is neither completely dead nor completely alive but it has having some state in between.
 
+                  Since, there is an entry for all the process in process table, even for Zombie Processes. It is obvious that size of process table is Finite. So, if zombie process is created in large amount, then Process Table will get filled up and program will stop without completing their task.
+                  to find out Maximum Number of Zombie Process created so that Program will not stop its execution we will create a zombie process within a loop and count it until the program does not stop the execution.
+                </p>
               </article>
             </section>
             <section class="main-section" id="rcomp">
