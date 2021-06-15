@@ -947,473 +947,151 @@ The header part is used for storing message type, destination id, source id, mes
                 </p>
               </article>
             </section>
-            <section class="main-section" id="rcomp">
+            <section class="main-section" id="threadconcept">
               <article>
-                <header>React Component</header>
-                <h3>There are two ways of creating react component</h3>
+                <header>Thread Concept</header>
+                <h3>What are Threads?</h3>
+                <p>Thread is an execution unit that consists of its own program counter, a stack, and a set of registers where the program counter mainly keeps track of which instruction to execute next, a set of registers mainly hold its current working variables, and a stack mainly contains the history of execution</p>
+                <h3>Advantages Of Multithreading</h3>
                 <ol><li>
-                <h2>Stateless Functional Component</h2>
-                <p>A stateless functional component is any function you write which accepts props and returns JSX</p>
-                <p>A stateless component is one that can receive data and render it, 
-                  but does not manage or track changes to that data</p>
-                  <p>We can make these type of components using javascript functions</p>
-                  <p>To create a component with a function, you simply write a JavaScript
-                     function that returns either JSX or null. One important thing to 
-                     note is that React requires your function name to begin with a
-                     <b> capital letter</b>. Here's an example of 
-                     stateless functional component that assigns an HTML class in JSX:</p>
-                     <code>
-                      // After being transpiled, the <div> will have a CSS class of 'customClass'
-                        const DemoComponent = function() {
-                          return (
-                             div className='customClass' />
-                          );
-                        };
-                     </code>
-             <em>Because a JSX component represents HTML, you could put several components together to create a more complex HTML page. This is one of the key advantages of the component architecture React provides. It allows you to compose your UI from many separate, isolated components. 
-               This makes it easier to build and maintain complex user interfaces.</em>         
-              </li>
-              <li>
-                <h2>Stateless Component</h2>
-                <p> A stateless component, on the other hand, is a class that extends React.Component, but does not use internal state </p>
-                <code>
-                  class <b>Kitten extends React.Component </b>{
-                   <b> constructor(props)</b> {
-                      <b>super(props)</b>;
-                    }
-                  
-                    render() {
-                      return (
-                        h1> Hi /h1>
-                      );
-                    }
-                  }
-                </code>
-                <ul>
-                  <li><strong>Kitten</strong> : Name of the class which extends React.Component Class.
-                    the Kitten class now has access to many useful React features, such as local state and lifecycle hooks. </li>
-                  <li><strong>super()</strong> :It uses super() to call the constructor of the parent class, in this case React.Component</li>
-                  <li><strong>constructor()</strong> : The constructor is a special method used during the initialization of objects that are created with the class keyword.</li>
-                </ul>
-                <br/>
-                <em>It is best practice to call a component's constructor with super, and pass props to both. This makes sure the component is initialized properly. </em>
-              </li>
-              <li>
-                <h2>Stateful Component</h2>
-                <p>Finally, a stateful component is a class component that does maintain its own internal state. You may see stateful components referred to simply as components or React components.</p>
-                <p>A common pattern is to try to minimize statefulness and to create stateless functional components wherever possible. This helps contain your state management to a specific area of your application. In turn, this improves development and maintenance of your app by making it easier to follow how changes to state affect its behavior.</p>
-                <p>For further refer <a href="#rstate">State In react</a></p>
-              </li>
-              <li>
-                <h2>Create a Component with Composition</h2>
-                <p>Imagine you are building an App and have created three components, a Navbar, Dashboard, and Footer.
+            
+                 <b> Responsiveness</b> –
+Multithreading in an interactive application may allow a program to continue running even if a part of it is blocked or is performing a lengthy operation, thereby increasing responsiveness to the user.
+In a non multi threaded environment, a server listens to the port for some request and when the request comes, it processes the request and then resume listening to another request. The time taken while processing of request makes other users wait unnecessarily. Instead a better approach would be to pass the request to a worker thread and continue listening to port.
 
-                  To compose these components together, you could create an App parent component which renders each of these three components as children. To render a component as a child in a React component, you include the component name written as a custom HTML tag in the JSX. For example, in the render method you could write:</p>
-                  <code>
-                    return (
-                      App>
-                          Navbar />
-                             Dashboard />
-                                Footer />
-                        /App>
-                          )
-                  </code>
-              </li>
-              </ol>
-              </article>
-            </section>
-            <section class="main-section" id="rprop">
-              <article>
-                <header>
-                  Props
-                </header>
-                <h2>To pass info from parent to child</h2>
-                <p>. In React, you can pass props, or properties, 
-                  to child components. Say you have an App component 
-                  which renders a child component called Welcome which
-                   is a stateless functional component. 
-                  You can pass Welcome a user property by writing:</p>
-                  <code>
-                     < App>
-                     < Welcome user='Mark' />
-                     < /App>
-                  </code>
-                  <p>
-                    You use custom HTML attributes created by you and supported by
-                     React to be passed to the component. In this case, the created 
-                     property user is passed to the component Welcome. Since Welcome
-                      is a stateless
-                     functional component, it has access to this value like so:
-                  </p>
-                  <code>const Welcome = (props) =>< h1>Hello, {props.user}! < /h1></code>
-                  <p>It is standard to call this value props and when dealing with stateless functional components, you basically consider it as an argument to a function which returns JSX. You can access the value of the argument in the function body
-                    . With class components, you will see this is a little different.</p>
-                 <h2>To pass an array as a prop</h2>
-                 <p>To pass an array to a JSX element, 
-                   it must be treated as JavaScript and wrapped in curly braces</p>
-                   <code>
-                   < ParentComponent>
-                   < ChildComponent colors={["green", "blue", "red"]} />
-                    < /ParentComponent>
-                   </code>
-                   <p>The child component then has access to the array property colors. 
-                     Array methods such as join() can be used when accessing the property.</p>
-                     <code>
-                      const ChildComponent = (props) =>< p>{props.colors.join(', ')}< /p>
-                     </code>
-                     <h2>Use Default Props</h2>
-                     <p>React also has an option to set default props. You can assign default props to a component as a property on the component itself and React assigns the default prop if necessary. This allows you to specify what a prop 
-                       value should be if no value is explicitly provided. </p>
-                     <p> For example, if you declare</p>  
-                     <code>MyComponent.defaultProps = { location: 'San Francisco' }</code>
-                     <p> you have defined a location prop that's set to the string San Francisco, unless you specify otherwise. React assigns default props if props are undefined, but if you pass null as the value for a prop, it will remain null</p>
-                     <h2>Oerride Default Props</h2>
-                     <p>The way to override the default props is to explicitly set the prop values for a component.</p>
-                     <em>If the prop value is an integer, it won't go in quotes but it should be wrapped in curly braces. For example, {100}. This syntax tells JSX to 
-                       interpret the value within the braces directly as JavaScript.</em>
-                       <h2>PropTypes to Define the Props You Expect in child component</h2>
-                       <p>React provides useful type-checking features to verify that components receive props of the correct type. For example, your application makes an API call to retrieve data that you expect to be in an array, which is then passed to a component as a prop. You can set propTypes on your component to require the data to be of type array. This will throw a useful warning when the data is of any other type.</p>
-                       <p>It's considered a best practice to set propTypes when you know the type of a prop ahead of time. You can define a propTypes property for a component in the same way you defined defaultProps. Doing this will check that props of a given key are present with a given type. Here's an example to require the type function for a prop called handleClick:</p>
-                       <code>MyComponent.propTypes = { handleClick: PropTypes.func.isRequired }</code>
-                       <p>In the example above, the PropTypes.func part checks that handleClick is a function. Adding isRequired tells React that handleClick is a required property for that component. You will see a warning if that prop isn't provided.</p>
-                       <em>To use you will have to import propTypes</em>
-                       <code>import PropTypes from 'prop-types';</code>
-                     <h2>Accessing prop if child component is class component</h2>
-                     <p>Anytime you refer to a class component within itself, you use the <b>this</b> keyword. To access props within a class component, you preface the code that you use to access it with this. For example, 
-                       if an ES6 class component has a prop called data, you write <b>{this.props.data}</b> in JSX.</p>  
-              </article>
-            </section>
-            <section class="main-section" id="rstate">
-              <header>State In React</header>
-              <p>One of the most important topics in React is state. State consists of any data your application needs to know about, that can change over time. You want your apps to respond to state changes and present an updated UI when necessary. React offers a nice solution for the state management of modern web applications.</p>
-              <h2>Creating a stateful component</h2>
-              <p>You create state in a React component by declaring a state property on the component <b>class in its constructor</b>. This initializes the component with state when it is created. The state property must be set to a JavaScript object. Declaring it looks like this:</p>
-              <code>
-                this.state = {
-                  // describe your state here
-                }
-              </code>
-              <p>You have access to the state object throughout the life of your component. You can update it, render it in your UI, and pass it as props to child components. The state object can be as complex or as simple as you need it to be.</p>
-              <em> Note that you must create a class component by extending React.Component in order to create state like this.</em>
-              <h2>Render State in User Interface</h2>
-              <p>Once you define a component's initial state, you can display any part of it in the UI that is rendered. If a component is stateful, it will always have access to the data in state in its render() method.
-                 You can access the data with <b>this.state</b></p>
-                 <p>If you want to access a state value within the <b>return</b> of the render method, you have to enclose the value in curly braces.</p>
-                 <p>React uses what is called a virtual DOM, to keep track of changes behind the scenes. When state data updates, it triggers a re-render of the components using that data - including child components that received the data as a prop. React updates the actual DOM, but only where necessary. This means you don't have to worry about changing the DOM.</p>
-                <h2> Render State in the User Interface Another Way</h2>
-               <p> In the render() method, before the return statement, you can write JavaScript directly. For example, you could declare functions, access data from state or props, perform computations on this data, and so on. Then, you can assign any data to variables, which you have access to in the return statement.</p>
-               <p>For eg</p>
-               <code>
-                class MyComponent extends React.Component {
-                  constructor(props) {
-                    super(props);
-                    this.state = {
-                      name: 'freeCodeCamp'
-                    }
-                  }
-                  render() {
-                    // Change code below this line
-                     const name = this.state.name;
-                    // Change code above this line
-                    return (
-                      < div>
-                        { /* Change code below this line */ }
-                            < h1>{name}< /h1>
-                        { /* Change code above this line */ }
-                      < /div>
-                    );
-                  }
-                };
-               </code>
-               <h2>Set state with this.setState</h2>
-               <p> There is also a way to change the component's state.
-                  React provides a method for updating component state called
-                   setState. You call the setState method within your component 
-                   class like so: this.setState(), passing in an object with key-value pairs. The keys are your state properties and the values are the updated state data. For instance, if we were storing a 
-                 username in state and wanted to update it, it would look like this:</p>
-                 <code>
-                  this.setState({
-                    username: 'Lewis'
-                  });
-                 </code>
-                 <h2>
-                  Bind 'this' to a Class Method
-                 </h2>
-                 <p>Class Methods are the functions which we define inside our class component</p>
-                 <p>A class method typically needs to use the this keyword so it can access properties on the class (such as state and props) inside the scope of the method</p>
-                 <p>One common way is to explicitly bind this in the constructor so this becomes bound to the class methods when the component is initialized. </p>
-                 <p>Add below code inside the constructor of component</p>
-                 <code>this.handleClick = this.handleClick.bind(this)</code>
-                 <p>Then, when you call a function like this.setState() within your class method, this refers to the class and will not be undefined.</p>
-                 <h2> Use State to Toggle an Element</h2>
-                 <p>Sometimes you might need to know the previous state when updating the state. However, state updates may be<b> asynchronous - this means React may batch multiple setState() calls into a single update.</b> This means you can't rely on the previous value of this.state or this.props when calculating the next value. So, you should not use code like this:</p>
-                 <code>this.setState({
-                  counter: this.state.counter + this.props.increment
-                });</code>
-                <p>nstead, you should pass setState a function that allows you to access state and props. Using a function with setState guarantees you are working with the most current values of state and props.
-                   This means that the above should be rewritten as:</p>
-                   <code>this.setState((state, props) => ({
-                    counter: state.counter + props.increment
-                  }));</code>
-                  <em>If you dont need props there is no need to pass them</em>
-                  <h2>Implementing Counter using State</h2>
-                  <code>
-                    class Counter extends React.Component {
-                      constructor(props) {
-                        super(props);
-                        this.state = {
-                          count: 0
-                        };
-                        // Change code below this line
-                        this.increment = this.increment.bind(this);
-                        this.decrement = this.decrement.bind(this);
-                         this.reset = this.reset.bind(this);
-                        // Change code above this line
-                      }
-                      // Change code below this line
-                       increment(){
-                         this.setState(state=>({
-                           count : state.count + 1
-                         }))
-                       }
-                         decrement(){
-                         this.setState(state=>({
-                           count : state.count - 1
-                         }))
-                       }
-                        reset(){
-                          this.setState(state=>({
-                            count : 0
-                          }))
-                        }
-                      // Change code above this line
-                      render() {
-                        return (
-                          < div>
-                            < button className='inc' onClick={this.increment}>Increment!< /button>
-                            < button className='dec' onClick={this.decrement}>Decrement!< /button>
-                            < button className='reset' onClick={this.reset}>Reset< /button>
-                            < h1>Current Count: {this.state.count}< /h1>
-                          </ div>
-                        );
-                      }
-                    };
-                  </code>
-                  <h2>Creating Controlled Form Using State</h2>
-                  <code>
-                    class MyForm extends React.Component {
-                      constructor(props) {
-                        super(props);
-                        this.state = {
-                          input: '',
-                          submit: ''
-                        };
-                        this.handleChange = this.handleChange.bind(this);
-                        this.handleSubmit = this.handleSubmit.bind(this);
-                      }
-                      handleChange(event) {
-                        this.setState({
-                          input: event.target.value
-                        });
-                      }
-                      handleSubmit(event) {
-                        // Change code below this line
-                           event.preventDefault()
-                           this.setState({
-                             submit:this.state.input
-                           })
-                        // Change code above this line
-                      }
-                      render() {
-                        return (
-                          < div>
-                            < form onSubmit={this.handleSubmit}>
-                              {/* Change code below this line */}
-                                 < input value={this.state.input} onChange={this.handleChange}/>
-                              {/* Change code above this line */}
-                               < button type='submit'>Submit!< /button>
-                            < /form>
-                            {/* Change code below this line */}
-                    
-                            {/* Change code above this line */}
-                          < /div>
-                        );
-                      }
-                    }
-                  </code>
-                  <em>: You also must call event.preventDefault() in the submit handler, to prevent the default form submit behavior which will refresh the web page.</em>
-               <h2>Pass State as Props to Child Components</h2>
-               <p> A common pattern is to have a stateful component containing the state important to your app, that then renders child components. You want these components to have access to some pieces of that state, which are passed in as props.</p>
-               <code>
-                class MyApp extends React.Component {
-                  constructor(props) {
-                    super(props);
-                    this.state = {
-                      name: 'CamperBot'
-                    }
-                  }
-                  render() {
-                    return (
-                       < div>
-                         {/* Change code below this line */}
-                         < Navbar name = {this.state.name}/>
-                         {/* Change code above this line */}
-                       </ div>
-                    );
-                  }
-                };
-                
-                class Navbar extends React.Component {
-                  constructor(props) {
-                    super(props);
-                  }
-                  render() {
-                    return (
-                    < div>
-                      {/* Change code below this line */}
-                      < h1>Hello, my name is: {this.props.name} < /h1>
-                      {/* Change code above this line */}
-                    < /div>
-                    );
-                  }
-                };
-               </code>
-               <p>This pattern illustrates some important paradigms in React.</p>
-               <ul>
-                 <li>
-                  The first is unidirectional data flow. State flows in one direction down the tree of your application's components, from the stateful parent component to child components. The child components only receive the state data they need.
-                 </li>
-                 <li>
-                  The second is that complex stateful apps can be broken down into just a few, or maybe a single, stateful component. The rest of your components simply receive state from the parent as props, and render a UI from that state. It begins to create a separation where state management is handled in one part of code and UI rendering in another. This principle of separating state logic from UI logic is one of React's key principles. When it's used correctly, it makes the design of complex, stateful applications much easier to manage.
-                 </li>
-               </ul>
-               <h2> Pass a Callback as Props</h2>
-               <p>Passing a function defined in parent as a prop enables the child component to call the function 
-                 which is defined in parent.
-               </p>
-               <p>You can pass state as props to child components, but you're not limited to passing data. You can also pass handler functions or any method that's defined on a React component to a child component. This is how you allow child components to interact with their parent components. You pass methods to a child just like a regular prop. It's assigned a name and you have access to that method name under this.props in the child component.</p>
-               <p>For eg this is parent where we have done all state management</p>
-               <code>
-                class MyApp extends React.Component {
-                  constructor(props) {
-                    super(props);
-                    this.state = {
-                      inputValue: ''
-                    }
-                    this.handleChange = this.handleChange.bind(this);
-                  }
-                  handleChange(event) {
-                    this.setState({
-                      inputValue: event.target.value
-                    });
-                  }
-                  render() {
-                    return (
-                       < div>
-                        { /* Change code below this line */ }
-                          < GetInput handleChange={this.handleChange} input={this.state.inputValue}/>
-                          < RenderInput input={this.state.inputValue} />
-                        { /* Change code above this line */ }
-                       < /div>
-                    );
-                  }
-                };
-                
-               </code>
-               <p>These are thye child comp which are receiving some state and rendering it</p>
-               <code>
-                class GetInput extends React.Component {
-                  constructor(props) {
-                    super(props);
-                  }
-                  render() {
-                    return (
-                      < div>
-                        < h3>Get Input:< /h3>
-                         < input
-                          value={this.props.input}
-                          onChange={this.props.handleChange}/>
-                      < /div>
-                    );
-                  }
-                };
-                
-                class RenderInput extends React.Component {
-                  constructor(props) {
-                    super(props);
-                  }
-                  render() {
-                    return (
-                      < div>
-                        < h3>Input Render:</h3>
-                        < p>{this.props.input}</p>
-                      < /div>
-                    );
-                  }
-                };
-               </code>
-            </section>
-            <section class="main-section" id="lmethods">
-              <article>
-                <header>
-                   Lifecycle Methods?
-                </header>
-                <h2>What are Lifecycle methods?</h2>
-                <p>Special methods that provide opportunities to perform actions at specific points in the lifecycle of a component. These are called lifecycle methods, or lifecycle hooks, and allow you to catch components at certain points in time. This can be before they are rendered, before they update, before they receive props, before they unmount, and so on. Here is a list of some of the main lifecycle methods</p>
-                <h3>Here are some of the lifecycle methods</h3>
-                <ol>
-                  <li>
-                    <h2>Component Will Mount</h2>
-                    <h5>When?</h5>
-                    <p>The componentWillMount() method is called<b> before the render()</b> method when a component is being mounted to the DOM</p>
-                  </li>
-                  <li>
-                    <h2>Component Did Mount</h2>
-                    <h5>Why?</h5>
-                    <p>To place API calls or any calls to your server in the lifecycle method componentDidMount()</p>
-                    <p>The componentDidMount() method is also the best place to attach any event listeners you need to add for specific functionality. </p>
-                    <p>You can use<b> document.addEventListener()</b> which takes the event (in quotes) as the first argument and the callback as the second argument.</p>
-                    <code>  componentDidMount() {
-                      document.addEventListener("keydown",this.handleKeyPress);
-                      }</code>
-                    <h5>When?</h5>
-                    <p>. This method is called after a component is mounted to the DOM. </p>
-                    <em>Any calls to setState() here will trigger a re-rendering of your component. When you call an API in this method, and set your state with the data that the API returns, it will automatically trigger an update once you receive the data.</em>
-                  </li>
-                  <li>
-                    <h2>Component Will Unmount</h2>
-                    <h5>Why?</h5>
-                    <p>To perform any kind of cleanup like removing the event listeners etc</p>
-                    <h5>When?</h5>
-                    <p> It's good practice to use this lifecycle method to do any clean up on React components before they are unmounted and destroyed. </p>
-                    <code>componentWillUnmount() {
-                      document.removeEventListener("keydown",this.handleKeyPress);
-                     }</code>
-                  </li>
-                  <li><h2>Component Should Update?</h2>
-                  <h5>why?</h5>
-                  <p>This method is a useful way to optimize performance. For example, the default behavior is that your component re-renders when it receives new props, even if the props haven't changed. You can use shouldComponentUpdate() to prevent this by comparing the props. The method must return a boolean value that tells React whether or not to update the component. You can compare the current props (this.props) to the next props (nextProps) to determine if you need to update or not, and return true or false accordingly.
-
-                  </p>
-                  <h5>When?</h5>
-                  <p> lifecycle method you can call when child components receive new state or props, and declare specifically if the components should update or not. The method is shouldComponentUpdate(), and it takes nextProps and nextState as parameters.</p>
-                  <p>For eg rerender the child component only if the prop value is even</p>
-                  <code>  shouldComponentUpdate(nextProps, nextState) {
-                    console.log('Should I update?');
-                    // Change code below this line
-                    if((nextProps.value)%2==0){
-                    return true;
-                    }
-                    return false;
-                    // Change code above this line
-                  }</code>
+For example, a multi threaded web browser allow user interaction in one thread while an video is being loaded in another thread. So instead of waiting for the whole web-page to load the user can continue viewing some portion of the web-page.
                 </li>
+                <li><b>Economical</b>:More efficient require less resources and faster and smoother context switching</li>
+                <li><b>Enhanced Throughput </b>of the system. Let us take an example for this: suppose a process is divided into multiple threads, and the function of each thread is considered as one job, then the number of jobs completed per unit of time increases which then leads to an increase in the throughput of the system.</li>
                 <li>
-                  <h2>Component Did Update</h2>
-                  <h5>When?</h5>
-                  <p>After the component is rerendered</p>
+                 <b> Scalability </b>–
+The benefits of multi-programming greatly increase in case of multiprocessor architecture, where threads may be running parallel on multiple processors. If there is only one thread then it is not possible to divide the processes into smaller tasks that different processors can perform.
+Single threaded process can run only on one processor regardless of how many processors are available.
+Multi-threading on a multiple CPU machine increases parallelism.
                 </li>
                 </ol>
+                <em><h3>Example of some multithreaded applications.</h3></em>
+                <ol>
+                  <li>
+                    <b>Web browser</b>
+                    <p>A web browser can download any number of files and web pages (multiple tabs) at the same time and still lets you continue browsing. If a particular web page cannot be downloaded, that is not going to stop the web browser from downloading other web pages.
+                    </p>
+                  </li>
+                  <li>
+                    <b>
+                      Web Servers
+                    </b>
+                    <p>
+                      A threaded web server handles each request with a new thread. There is a thread pool and every time a new request comes in, it is assigned to a thread from the thread pool.
+                    </p>
+                  </li>
+                  <li>
+                    <b>
+                      Computer Games 
+                    </b>
+                    <p>
+                      You have various objects like cars, humans, birds which are implemented as separate threads. Also playing the background music at the same time as playing the game is an example of multithreading.
+                    </p>
+                  </li>
+                  <li>
+                    <b>
+                      Text Editors
+                    </b>
+                    <p>
+                      When you are typing in an editor, spell-checking, formatting of text and saving the text are done concurrently by multiple threads. The same applies for Word processors also.
+                    </p>
+                  </li>
+                </ol>
+                <h3>Types Of Thread</h3>
+                <table>
+                  <tr>
+                    <th>
+                      User Level Thread
+                    </th>
+                    <th>
+                      Kernel Level Thread
+                  </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      It is implemented by user and not recognized by os.
+                    </td>
+                    <td>
+                      It is implemented and recognized by os.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Its context switching does not require hardware support.
+                    </td>
+                    <td>
+                      Its context switching require hardware support.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      If one is blocked other will also be blocked as they are designed as dependent threads.For eg : Java, Posix thread.
+                    </td>
+                    <td>
+                      If one is blocked other will not be blocked as they are designed as independent threads.For eg : Window Solaris thread.
+                    </td>
+                    <tr>
+                      <td>
+                        Implementation done by thread library so generic in nature and can run on any os.
+                      </td>
+                      <td>
+                        Implementation done by os so complex in nature and can run on specific os.
+                      </td>
+                    </tr>
+                  </tr>
+                </table>
+                <h3>Types Of MultithreadingModels</h3>
+                <em>The user threads must be mapped to kernel threads, by one of the following strategies:</em>
+                <table>
+                  <tr>
+                    <th>
+                      Many To One
+                    </th>
+                    <th>
+                      One To One
+                  </th>
+                  <th>
+                    Many To Many
+                  </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      many user-level threads are all mapped onto a single kernel thread.
+                    </td>
+                    <td>
+                      The one to one model creates a separate kernel thread to handle each and every user thread.
+                    </td>
+                    <td>The many to many model multiplexes any number of user threads onto an equal or smaller number of kernel threads, combining the best features of the one-to-one and many-to-one models.</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      In this case, if user-level thread libraries are implemented in the operating system in some way that the system does not support them, then the Kernel threads use this many-to-one relationship model.
+
+                    </td>
+                    <td>
+                      Most implementations of this model place a limit on how many threads can be created.Linux and windows use this
+                    </td>
+                    <td>
+                      There is a thread pool only some threads are mapped to kernel thread once pool is filled we wait for the task to complete.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <img src="./mto.PNG" style="width: 20vw;height: 20vw;"/>
+                    </td>
+                    <td>
+                      <img src="./oto.PNG"style="width: 20vw;height: 20vw;"/>
+                    </td>
+                    <td>
+                      <img src="./mtm.PNG"style="width: 20vw;height: 20vw;"/>
+                    </td>
+                  </tr>
+                </table>
               </article>
             </section>
             <section class="main-section" id="rifelse">
