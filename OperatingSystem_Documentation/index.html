@@ -947,6 +947,202 @@ The header part is used for storing message type, destination id, source id, mes
                 </p>
               </article>
             </section>
+            <section class="main-section" id="processscheduling">
+              <article>
+                <header>
+                  Process Scheduling
+                </header>
+                  <h3>What is process Scheduling?</h3>
+                  <p>The process scheduling is the activity of the process manager that handles the removal of the running process from the CPU and the selection of another process on the basis of a particular strategy.
+
+Process scheduling is an essential part of a Multiprogramming operating systems. Such operating systems allow more than one process to be loaded into the executable memory at a time and the loaded process shares the CPU using time multiplexing.</p>
+                  <h3>Why process scheduling?</h3>
+                  <p>1. It allows OS to allocate time interval of CPU execution for each process.<br/>
+                    2. It keeps the CPU busy all time . It allows us to get the minimum response time for programs.</p>
+                  <h3>Schedulers and its types?</h3>
+                  <p>
+                    Scheduler are special system software which handle process scheduling in various ways.
+                    Their main task is to select the jobs to be submitted to the system and to decide which process to run.They are of three types:
+                    <ul>
+                      <li>
+                        <b>Long Term Scheduler</b>
+                        <p>Decision of how many processes to create.Long term scheduler is also known as a job scheduler. This scheduler regulates the program and select process from the queue and loads them into memory for execution. It also regulates the degree of multi-programing.
+
+                          However, the main goal of this type of scheduler is to offer a balanced mix of jobs, like Processor, I/O jobs., that allows managing multiprogramming.</p>
+                      </li>
+                      <li>
+                        <b>
+                          Medium term scheduler
+                        </b>
+                        <p>
+                          Decision of which process to suspend and which to send to secondary memory.
+                          Medium-term scheduling is an important part of swapping. It enables you to handle the swapped out-processes. In this scheduler, a running process can become suspended, which makes an I/O request.
+
+A running process can become suspended if it makes an I/O request. A suspended processes can't make any progress towards completion. In order to remove the process from memory and make space for other processes, the suspended process should be moved to secondary storage.
+                        </p>
+                      </li>
+                      <li>
+                        <b>
+                          Short term scheduler
+                        </b>
+                        <p>
+                          Decision of which process in ready queue is to be sent to running state.
+                          Short term scheduling is also known as CPU scheduler. The main goal of this scheduler is to boost the system performance according to set criteria. This helps you to select from a group of processes that are ready to execute and allocates CPU to one of them. The dispatcher gives control of the CPU to the process selected by the short term scheduler.
+                        </p>
+                        <em>When is a CPU scheduler invoked?</em>
+                        <p>When a process switches from :</p>
+                        <ol>
+                          <li>running to waiting state(cpu scheduling is necessary)</li>
+                          <li>running to ready state(cpu scheduling is optional)</li>
+                          <li>waiting to ready state(cpu scheduling is optional)</li>
+                          <li>Terminates(cpu scheduling is necessary)</li>
+                        </ol>
+                      </li>
+                    </ul>
+                  </p>
+                  <h3>Scheduling Queue</h3>
+                  <p>The OS maintains all PCBs in Process Scheduling Queues. The OS maintains a separate queue for each of the process states and PCBs of all processes in the same execution state are placed in the same queue. When the state of a process is changed, its PCB is unlinked from its current queue and moved to its new state queue.
+
+                    The Operating System maintains the following important process scheduling queues −
+                    <img src="./queue.PNG"/>
+                    <ul>
+                      <li>
+                        Job queue − This queue keeps all the processes in the system.
+                      </li>
+                      <li>
+                        Ready queue − This queue keeps a set of all processes residing in main memory, ready and waiting to execute. A new process is always put in this queue.
+                      </li>
+                      <li>
+                        Device queues − The processes which are blocked due to unavailability of an I/O device constitute this queue.
+                      </li>
+                    </ul>
+                </p>
+                <b>What is a CPU burst cycle?</b>
+                <p>The execution fo a process consist of alternate Cpu bursts and I/O bursts,starting and ending with CPU burst.</p>
+                <h3>Preemptive VS Non-Preemptive Scheduling</h3>
+                <table>
+                    <tr>
+                      <th>
+                        Preemptive 
+                      </th>
+                      <th>
+                        Non-Preemptive
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>
+                        A process can be forced to leave the CPU and enter ready queue.
+                      </td>
+                      <td>
+                        Cooperative scheduling where a process keeps the CPU until it terminates or switches to waiting state.
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Windows 3.1
+                      </td>
+                      <td>
+                        Unix,Linux,Windows 95.
+                      </td>
+                    </tr>
+                    <h3>Dispatcher</h3>
+                    <p>It is the module of operating system that gives control of the CPU to the process selected 
+                      by the CPU scheduler (short term scheduler)
+                    </p>
+                    <p>Steps :
+                      <ol>
+                        <li>Switching context</li>
+                        <li>Switching to user mode</li>
+                        <li>jumping to proper location in user program.</li>
+                      </ol>
+                    </p>
+                    <b>Dispatch Latency</b>
+                    <p>It is the time taken to stop a process and start another.Its a complete overhead</p>
+                </table>
+                <b>Discuss Scheduling Criteria:</b>
+                <p><ol>
+                  <li>High CPU utilization</li>
+                  <li>High <em>throuput</em>number of processes completed per unit time</li>
+                  <li>Low <em>turnaroundtime</em>Time from submission to completion (time spent in different 
+                    queues + time spent in CPU + time spent in different i/o 
+                    devices) </li>
+                    <li>Low<em>Response time</em> time from submission to first response i.e. first time a process is assigned CPU.</li>
+                    <li>Low <em>Waiting Time</em>time spend in the ready queue (only)</li>
+                </ol></p>
+                <h3>Process Scheduling Algorithms</h3>
+                <table>
+                  <tr>
+                   <th>Name</th>
+                   <th>FCFS</th>
+                   <th>SJF</th>
+                   <th>SRTF</th>
+                   <th>Priority</th>
+                   <th>Round Robin</th>
+                   <th>Multi Level Queue Scheduling</th>
+                   <th>Multi Level Feedback queue scheduling</th>
+                  </tr>
+                  <tr>
+                    <th>Criteria</th>
+                    <td>Arrival Time</td>
+                    <td>Burst Time</td>
+                    <td>Burst Time</td>
+                    <td>Priority</td>
+                    <td>Time Quantum fixed</td>
+                    <td>Ready queue divided in separate queues one with higher priorities exec first</td>
+                    <td>Ready queue divided in separate queues one with higher priorities exec first but inter queue movement</td>
+                   </tr>
+                   <tr>
+                    <th>Mode</th>
+                    <td>Non Preemptive</td>
+                    <td>Non Preemptive</td>
+                    <td> Preemptive</td>
+                    <td>Preem/Non Preemptive</td>
+                    <td>Preemptive</td>
+                    <td>Non Preemptive</td>
+                    <td>Preemptive</td>
+                   </tr>
+                   <tr>
+                    <th>Break Ties</th>
+                    <td>less Pid</td>
+                    <td>FCFS</td>
+                    <td>FCFS</td>
+                    <td>FCFS</td>
+                    <td>NO Criteria if tq is very high (FCFS) if less tq processor sharing</td>
+                    <td>NO </td>
+                    <td>queue movement</td>
+                   </tr>
+                   <tr>
+                    <th>Advantage</th>
+                    <td>Simple</td>
+                    <td>Most efficient</td>
+                    <td>Optimal</td>
+                    <td>Low WT for high priority process</td>
+                    <td>No indefinite blocking</td>
+                    <td>High priority not wait</td>
+                    <td>Less starvation</td>
+                   </tr>
+                   <tr>
+                    <th>Disadvantages</th>
+                    <td>High avg WT , <b>Convoy effect</b>
+                    If a process arrives early it will aqquire the CPU and if it has large burst time the other processes will suffer from starvation</td>
+                    <td>Practically not possible</td>
+                    <td>Practically not possible</td>
+                    <td>Starvation of low priority processes</td>
+                    <td>High context switching</td>
+                    <td>Starvation,Complex</td>
+                    <td>Complex</td>
+                   </tr>
+
+                </table>
+                <em>Round robin is used most in real world scenario</em>
+                <br/>
+                <b>Ageing</b>
+                <p> gradually increase the priority of a process waiting for a long time 
+                  <b>priority inversion</b>: a low-priority process gets the priority of a high-priority process waiting 
+                  for it </p>
+              </article>
+
+            </section>
             <section class="main-section" id="threadconcept">
               <article>
                 <header>Thread Concept</header>
@@ -1092,682 +1288,308 @@ Multi-threading on a multiple CPU machine increases parallelism.
                     </td>
                   </tr>
                 </table>
-              </article>
-            </section>
-            <section class="main-section" id="rifelse">
-              <article>
-                <header>REndering based on state values using conditions</header>
-                <h2>Using If Else</h2>
-                <p>For eg in below code if state display value is true display the h1 else do not display it</p>
-                <code>
-                  class MyComponent extends React.Component {
-                    constructor(props) {
-                      super(props);
-                      this.state = {
-                        display: true
-                      }
-                      this.toggleDisplay = this.toggleDisplay.bind(this);
-                    }
-                    toggleDisplay() {
-                      this.setState((state) => ({
-                        display: !state.display
-                      }));
-                    }
-                    render() {
-                      // Change code below this line
-                      if(this.state.display)
-                      {
-                      return (
-                         < div>
-                           < button onClick={this.toggleDisplay}>Toggle Display< /button>
-                           < h1>Displayed!< /h1>
-                         < /div>
-                      );
-                      }
-                      else{
-                         return (
-                         < div>
-                           < button onClick={this.toggleDisplay}>Toggle Display< /button>
-                         < /div>
-                      );
-                      }
-                    }
-                  };
-                </code>
-                <h2> Use && for a More Concise Conditional</h2>
-                <code>{condition && < p>markup< /p>}</code>
-                <p>If the condition is true, the markup will be returned. If the condition is false, the operation will immediately return false after evaluating the condition and return nothing. You can include these statements directly in your JSX and string multiple conditions together by writing && after each one. This allows you to handle more complex conditional logic in your render() method without repeating a lot of code.</p>
-                <code>
-                  class MyComponent extends React.Component {
-                    constructor(props) {
-                      super(props);
-                      this.state = {
-                        display: true
-                      }
-                      this.toggleDisplay = this.toggleDisplay.bind(this);
-                    }
-                    toggleDisplay() {
-                      this.setState(state => ({
-                        display: !state.display
-                      }));
-                    }
-                    render() {
-                      // Change code below this line
-                      return (
-                         < div>
-                           < button onClick={this.toggleDisplay}>Toggle Display< /button>
-                           {this.state.display &&
-                           < h1>Displayed!< /h1>}
-                         < /div>
-                      );
-                    }
-                  };
-                </code>
-                <h2>Use a Ternary Expression</h2>
-                <code>condition ? expressionIfTrue : expressionIfFalse;</code>
-                <p> set up a ternary expression that implements the following logic: when the page first loads, render the submit button, buttonOne, to the page. Then, when a user enters their age and clicks the button, render a different button based on the age. If a user enters a number less than 18, render buttonThree. If a user enters a number greater than or equal to 18, render buttonTwo.</p>
-                <code> { this.state.userAge === ''
-                  ? buttonOne
-                  : this.state.userAge >= 18
-                    ? buttonTwo
-                    : buttonThree}</code>
-                    <h2>Render Conditionally From Props</h2>
-                    <p>use the value of a given prop to automatically make decisions about what to render.</p>
-                    <code>class Results extends React.Component {
-                      constructor(props) {
-                        super(props);
-                      }
-                      render() {
-                        {/* Change code below this line */}
-                        return this.props.fiftyFifty >= .5 ? < h1>"You Win!"< /h1>:< h1>"You Lose!"< /h1>;
-                        {/* Change code above this line */}
-                      }
-                    }
-                    </code>
-              </article>
-            </section>
-            <section class="main-section" id="tdlist">
-             <article>
-               <header>To Do List</header>
-               <h2>Here we have used array.map() to render list of elements from an array</h2>
-               <code>
-                const textAreaStyles = {
-                  width: 235,
-                  margin: 5
-                };
-                
-                class MyToDoList extends React.Component {
-                  constructor(props) {
-                    super(props);
-                    // Change code below this line
-                      this.state = {
-                        userInput:'',
-                        toDoList:[]
-                      }
-                    // Change code above this line
-                    this.handleSubmit = this.handleSubmit.bind(this);
-                    this.handleChange = this.handleChange.bind(this);
-                  }
-                  handleSubmit() {
-                    const itemsArray = this.state.userInput.split(',');
-                    this.setState({
-                      toDoList: itemsArray
-                    });
-                  }
-                  handleChange(e) {
-                    this.setState({
-                      userInput: e.target.value
-                    });
-                  }
-                  render() {
-                    const items = this.state.toDoList.map(i => < li key={i+1}>{i}< /li>);
-                    return (
-                      < div>
-                         < textarea
-                          onChange={this.handleChange}
-                          value={this.state.userInput}
-                          style={textAreaStyles}
-                          placeholder='Separate Items With Commas'
-                        />
-                        < br />
-                        < button onClick={this.handleSubmit}>Create List</button>
-                        < h1>My "To Do" List:< /h1>
-                        < ul>{items}< /ul>
-                      </ div>
-                    );
-                  }
-                }
-               </code>
-               <em>Each and every li element i.e item must have a unique key among its siblings</em>
-               <h2>Array.filter()</h2>
-               <p> filters the contents of an array based on a condition, then returns a new array. For example, if you have an array of users that all have a property online which can be set to true or false, you can filter only those users that are online by writing:</p>
-               <code>let onlineUsers = users.filter(user => user.online);</code>
-             </article>
-            </section>
-            <section class="main-section" id="redux">
-            <article>
-            <header>Redux</header>
-            <h2>Introduction</h2>
-            <p>Redux is a state management framework that can be used with a number of different web technologies, including React.</p>
-            <p>In Redux, there is a single state object that's responsible for the entire state of your application. This means if you had a React app with ten components, and each component had its own local state, the entire state of your app would be defined by a single state object housed in the <b>Redux store</b></p>
-            <h2>REdux Store</h2>
-            <p>The Redux store is the single source of truth when it comes to application state.
-              This also means that any time any piece of your app wants to update state, it must do so through the Redux store. The unidirectional data flow makes it easier to track state management in your app.</p>
-              <p>The Redux store is an object which holds and manages application state. There is a method called <b>createStore() on the Redux object</b>, which you use to create the Redux store. 
-                This method takes a<b> reducer function</b> as a required argument.</p>
-              <p>Reducer is a function which takes state as an argument and returns state</p>
-              <code>
-                const reducer = (state = 5) => {
-                  return state;
-                }
-                
-                // Redux methods are available from a Redux object
-                // For example: Redux.createStore()
-                // Define the store here:
-                var store = Redux.createStore(reducer);
-              </code>
-              <h2>Get state from redux store</h2>
-              <p>The Redux store object provides several methods that allow you to interact with it. For example, you can retrieve the current state held in the Redux store object with the <b>getState()</b> method</p>
-              <code>
-                const store = Redux.createStore(
-                   (state = 5) => state
-                  );
-                var currentState = store.getState()</code>
-                <h2>Different methods we have access to on react store</h2>
-                <h5>store.getState()</h5>
-                <p>To get the current state of redux store</p>
-                <h5>store.dispatch(action creator())</h5>
-                <p>To pass the action to the store</p>
-                <h5>store.subscribe()</h5>
-                <p> This allows you to subscribe listener functions to the store, which are called whenever an action is dispatched against the store. One simple use for this method is to subscribe a function to your store that simply logs a message every time an action is received and the store is updated.</p>
-                <code>store.subscribe(() =>{
-                  count++;
-               })</code>
-               <p>So in the above code count will be increamented as many timmes as we dispatch action to the redux store</p>
-            </article>
-          </section>
-            <section class="main-section" id="raction">
-              <article>
-                <header>Redux Action</header>
-                <p>Since Redux is a state management framework, updating state is one of its core tasks. In Redux, all state updates are triggered by dispatching actions.</p>
-                <p> An action is simply a JavaScript object that contains information about an action event that has occurred. The Redux store receives these action objects, then updates its state accordingly.</p>
-                <p>Sometimes a Redux action also carries some data. For example, the action carries a username after a user logs in. While the data is optional, actions must carry a type property that specifies the <b>'type' of action</b> that occurred.</p>
-                <p>Think of Redux actions as messengers that deliver information about events happening in your app to the Redux store. The store then conducts the business of updating state based on the action that occurred.</p>
-                <P>Writing a Redux action is as simple as declaring an object with a type property.For eg here is the action for login</P>
-                <code>
-                  // Define an action here:
-                  // Define an action here:
-                  var action = {
-                      type:'LOGIN'
-                  }
-                </code>
-                <h2>Action Creater</h2>
-                <p>After creating an action, the next step is sending the action to the Redux store so it can update its state.</p>
-                <p>Action creaters are the javascript function which are used to send action (js object with type & payload property) to redux store so that it can update the state</p>
-                <p>Action create create action i.e they return action(js objects that represent action events)</p>
-                <code>// Define an action creator here:
-                  function actionCreator(){
-                      return action;
-                  }</code>
-                  <h2>Dispatch an Action Event</h2>
-                  <p>dispatch method is what you use to dispatch actions to the Redux store. Calling store.dispatch() and passing the value returned from an action creator sends an action back to the store.</p>
-                  <b>store.dispatch(action object)</b>
-                  <code>store.dispatch(actionCreator());</code>
-                              OR
-                  <code>store.dispatch({type:'LOGIN'})</code>
-              </article>
-            </section>
-            <section class="main-section" id="reducer">
-              <article>
-                <Header>Reducers</Header>
-                <h2>Handle Action In The Store</h2>
-                <p>After an action is created and dispatched, the Redux store needs to know how to respond to that action. This is the job of a reducer function. Reducers in Redux are responsible for the state modifications that take place in response to actions.</p>
-                <p>A reducer takes <b>state and action as arguments, and it always returns a new state</b>. It is important to see that this is the only role of the reducer. It has no side effects — it never calls an API endpoint and it never has any hidden surprises. The 
-                  reducer is simply a pure function that takes state and action, then returns new state</p>
-                  <em>Another key principle in Redux is that state is read-only. In other words, the reducer function must always return a new copy of state and never modify state directly. </em>
-                  <p>Here is a complete login logout example implementing switch case for updating state based on action</p>
-                  <code>
-                    const defaultState = {
-                      authenticated: false
-                    };
-                    
-                    const authReducer = (state = defaultState, action) => {
-                      // Change code below this line
-                       switch(action.type){
-                         case 'LOGIN':
-                           return{
-                             authenticated:true
-                           };
-                          case 'LOGOUT':
-                          return {
-                            authenticated:false
-                          };
-                          default:
-                           return defaultState
-                       }
-                      // Change code above this line
-                    };
-                    
-                    const store = Redux.createStore(authReducer);
-                    
-                    const loginUser = () => {
-                      return {
-                        type: 'LOGIN'
-                      }
-                    };
-                    
-                    const logoutUser = () => {
-                      return {
-                        type: 'LOGOUT'
-                      }
-                    };
-                  </code>
-                  <em>A common practice when working with Redux is to assign action types as read-only constants, then reference these constants wherever they are used. </em>
-                 <h2>Combining Multiple Reducers</h2>
-                 <p>You define multiple reducers to handle different pieces of your application's state, then compose these reducers together into one root reducer. The root reducer is then passed into the Redux createStore() method.</p>
-                 <p>Redux provides the <b>combineReducers() method. This method accepts an object as an argument</b> in which you define properties which associate keys to specific reducer functions. The name you give to the keys will be used by Redux as the name for the associated piece of state.</p>
-                 <code>const rootReducer = Redux.combineReducers({
-                  auth: authenticationReducer,
-                  notes: notesReducer
-                });</code>
-              </article>
-            </section>
-            <section class="main-section" id="thunk">
-              <article>
-                <header>Middleware</header>
-                <p>These are js function which are used to deal with asynchronous action creator</p>
-                <p>So with middleware redux thunk the action creators can return action or function , when it will return function 
-                  redux thunk will automatically call that function with get state and dispatch as arguments so that at any time we can get the state of redux store and can update it
+                <b><p>Optimal Number of threads required for a process??</p></b>
+                <p>If your threads don't do I/O, synchronization, etc., and there's nothing else running, 1 thread per core will get you the best performance. However that very likely not the case. Adding more threads usually helps, but after some point, they cause some performance degradation.
+                  So the best way is to test with different number of threads until you find the right number for your application as it depends on the system configuration , application and other factors.
+                  It is not that using large number of threads will always help as it can even degrade performance by doing lot of context switching
                 </p>
-                <h2>How to use Redux Thunk?</h2>
-                <p>
+                <b><p>Effect of multiple cores on multi-threading??</p></b>
+                <p> It is fairly widely understood that multithreading bugs are more likely to manifest on multi-processor platforms
+                  <em>Try doing again</em>
+                </p>
+                <b><p>Why static variables are considered evil in real life operating system?</p></b>
+                <p>Since static variables represent global state which are hard to test and reason so it will not be a good design as the code would not be that testable.</p>
+              </article>
+            </section>
+           <section class="main-section" id="synchronisation">
+             <article>
+               <header>
+                 Process Synchronization
+               </header>
+               <h3>What is process synchronisation??</h3>
+               <p>Based on synchronisation there are two types of process:</p>
+               <b>Independent process:</b>Execution of one process does not affect other.<br/>
+               <b>Cooperative process:</b>Execution of one process affect other.So for smooth functioning of these process they should be synchronised.
+               <p>It is the task phenomenon of coordinating the execution of processes in such a way that no two processes can have access to the same shared data and resources at the same time.</p>
+               <p>It is used to maintain appropriate order of execution of cooperative processes. </p>
+               <h3>Race Condition</h3>
+               <p>At the time when more than one process is either executing the same code or accessing the same memory or any shared variable; In that condition, there is a possibility that the output or the value of the shared variable is wrong so for that purpose all the processes are doing the race to say that my output is correct. This condition is commonly known as a race condition. As several processes access and process the manipulations on the same data in a concurrent manner and due to which the outcome depends on the particular order in which the access of data takes place.</p>
+               <h3>Logical Address VS Physical Address</h3>
+               <img src="./logandphy.PNG"/>
+               <table>
+                 <tr>
+                   <th>
+                     Logical Address
+                   </th>
+                   <th>
+                     Physical Address
+                   </th>
+                 </tr>
+                 <tr>
+                   <td>
+                    Logical Address is generated by CPU while a program is running. The logical address is virtual address as it does not exist physically, therefore, it is also known as Virtual Address
+                   </td>
+                   <td>
+                    Physical Address identifies a physical location of required data in a memory
+                   </td>
+                 </tr>
+                 <tr>
+                   <td>
+                    Logical Address Space is set of all logical addresses generated by CPU in reference to a program.
+                   </td>
+                   <td>
+                    Physical Address is set of all physical addresses mapped to the corresponding logical addresses.
+                   </td>
+                 </tr>
+                 <tr>
+                   <td>
+                    User can view the logical address of a program.
+                   </td>
+                   <td>
+                    User can never view physical address of program.
+                   </td>
+                 </tr>
+                 <tr>
+                   <td>
+                     Generated by CPU
+                   </td>
+                   <td>
+                     Computed by MMU.
+                   </td>
+                 </tr>
+               </table>
+               <h3>Critical Section In Synchronization</h3>
+               <p>When more than one processes access a same code segment that segment is known as critical section. Critical section contains shared variables or resources which are needed to be synchronized to maintain consistency of data variable.</p>
+               <code>acquireLock();
+                Process Critical Section
+                releaseLock();</code>
+                <p>A thread must acquire a lock prior to executing a critical section. The lock can be acquired by only one thread. There are various ways to implement locks</p>
+               <h3>Mutual Exclusion In Synchronization</h3>
+               <em> The primary task of process synchronization is to get rid of race conditions while executing the critical section.
+                This is primarily achieved through mutual exclusion.</em>
+                <p>Mutual exclusion is a property of process synchronization which states that “no two processes can exist in the critical section at any given point of time”.
+                  Any process synchronization technique being used must satisfy the property of mutual exclusion, without which it would not be possible to get rid of a race condition.
+                </p>
+                <h3>Progress</h3>
+                <p>Out of all the processes only interested ones should be considered to enter the critical section and the decision should be taken in finite time.</p>
+                <h3>Bounded Wait Time</h3>
+                <p>There should be a limit on the number of times a process can enter a critical section when other processes are also waiting to enter the critical section.</p>
+                <h3>Software Solution To Critical Section Problem</h3>
+                <b>Peterson Solution</b>
+                <p>It is a program used to solve critical section problem . It only works when there are two processes who are trying to access the same shared variable concurrently leading to race condition</p>
+                <p>It is a combination of turn and flag variable solution and satisfy all the above conditions</p>
+                <code>
+                  // code for producer (j)
+  
+// producer j is ready
+// to produce an item
+//process j says i am interested
+flag[j] = true;
+  
+// but consumer (i) can consume an item
+//it gives i to execute next
+turn = i;
+  
+// if consumer is ready to consume an item
+// and if its consumer's turn
+//if other process is interested and executing current will keep on waiting #mutual exclusion
+while (flag[i] == true && turn == i)
+//if flag is false means process is not interested it cant enter so #progress is achieved
+
+    { // then producer will wait }
+  
+    // otherwise producer will produce
+    // an item and put it into buffer (critical Section)
+  
+    // Now, producer is out of critical section
+    flag[j] = false;
+    //Now by setting flag as false giving chance to other process #bounded wait is achieved
+    // end of code for producer
+  
+    //--------------------------------------------------------
+    // code for consumer i
+  
+    // consumer i is ready
+    // to consume an item
+    flag[i] = true;
+  
+    // but producer (j) can produce an item
+    turn = j;
+  
+    // if producer is ready to produce an item
+    // and if its producer's turn
+    while (flag[j] == true && turn == j)
+  
+        { // then consumer will wait }
+  
+        // otherwise consumer will consume
+        // an item from buffer (critical Section)
+  
+        // Now, consumer is out of critical section
+        flag[i] = false;
+// end of code for consumer
+                </code>
+                <h3>Why preemptive kernels are better than non-preemprive kernels??</h3>
+                <p>Preemptive kernel is more suitable for real time programming as compared to non-preemptive kernels as :
                   <ol>
-                    <li>To include Redux Thunk middleware, you pass it as an argument to <b>Redux.applyMiddleware()</b></li>
-                    <li>This statement is then provided as a second optional parameter to the <b>createStore()</b> function</li>
-                    <code>
-                      const store = Redux.createStore(
-                          asyncDataReducer,
-                          Redux.applyMiddleware(ReduxThunk.default)
-                           );
-                    </code>
-                    <li>Here since the action creator maybe returning a function so we will pass dispatch as a parameter to that function</li>
-                    <li>Then we will manually dispatch the action creater one before the api call and one after the api call ,the latter one will be having the data</li>
-                    <code>
-                      const handleAsync = () => {
-                        return function(dispatch) {
-                          // Dispatch request action here
-                             store.dispatch(requestingData())
-                          setTimeout(function() {
-                            let data = {
-                              users: ['Jeff', 'William', 'Alice']
-                            }
-                            // Dispatch received data action here
-                          store.dispatch(receivedData(data))
-                          }, 2500);
-                        }
-                      };
-                    </code>
+                    <li>Responsive time is deterministic and is more responsive as compared to non-preemptive kernel.</li>
+                    <li>They are more secure</li>
+                    <li>In non-preemptive kernels Higher priority task might have to wait for long time.</li>
                   </ol>
                 </p>
-              </article>
-            </section>
-            <section class="main-section" id="counter">
-              <article>
-                <header>Counter Using Redux</header>
+                <h3>Semaphore</h3>
+                <p>It is a synchronization tool used in process synchronization.</p>
+                <p>It is an integer variable that is accessed only through two atomic operations wait and signal </p>
+                <b>Wait</b>
                 <code>
-                  const INCREMENT = 'INCREMENT';
-const DECREMENT ='DECREMENT'; // Define a constant for decrement action types
-
-const counterReducer = (state = 0,action) => {
-    switch(action.type){
-        case INCREMENT:
-              return state = state+1;
-        case DECREMENT:
-               return state = state-1;
-        default:
-               return state;
-          
-    }
-
-}; // Define the counter reducer which will increment or decrement the state based on the action it receives
-
-const incAction = ()=>{
-    return {
-        type:INCREMENT
-    }
-}; // Define an action creator for incrementing
-
-const decAction = ()=>{
-    return {
-        type : DECREMENT
-    }
-} // Define an action creator for decrementing
-
-const store = Redux.createStore(counterReducer); // Define the Redux store here, passing in your reducers
+                  //s is semaphore val
+                  //in wait we wait for signal from another process
+                  //here we decrease semaphore value
+                  Wait(s)
+                  {
+                    while(s<=0)
+                    //no operation and decrease value of s--
+                    s--;
+                  }
                 </code>
-              </article>
-            </section>
-            <section class="main-section" id="simmut">
-              <article>
-                <header>State Immutability</header>
-                <p>
-                  Immutable state means that you never modify state directly, instead, you return a new copy of state.
-                </p>
-                <p>If you took a snapshot of the state of a Redux app over time, you would see something like state 1, state 2, state 3,state 4, ... and so on where each state may be similar to the last, but each is a distinct piece of data. This immutability, in fact, is what provides such features as time-travel debugging that you may have heard about.</p>
-                <p>Redux does not actively enforce state immutability in its store or reducers, that responsibility falls on the programmer. Fortunately, JavaScript (especially ES6) provides several useful tools you can use to enforce the immutability of your state, whether it is a string, number, array, or object. Note that strings and numbers are primitive values and are immutable by nature. In other words, 3 is always 3. You cannot change the value of the number 3. An array or object, however, is mutable. In practice, your state will probably consist of an array or object, as these are useful data structures for representing many types of information.</p>
-                <p>To add an item to an array</p>
-                <p>.concat() doesn’t modify array but just returns a new array</p>
-                <p>spread operator […array] doesn’t modify array but just returns a new array</p>
-                <code>      return state.concat(action.todo);
-                  // or return [...state, action.todo]</code>
-                  <p>To remove an item at index from array</p>
-                  <p>Using spread operator</p>
-                  <code>        ...state.slice(0, action.index),
-                    ...state.slice(action.index + 1, state.length)</code>
-                    <p>Using concat</p>
-                    <code>
-                      return state.slice(0, action.index).concat(state.slice(action.index + 1, state.length));
-                    </code>
-                    <p>Copy an Object to state</p>
-                    <p> there are ways to help enforce state immutability when state is an object, too. A useful tool for handling objects is the <b>Object.assign()</b> utility.</p>
-                    <p>Use the method Object.assign({}, obj1, obj2) in return. Pass state as obj1.</p>
-                    |<p>The obj2 should be the updated {key: value} pair of your state.</p>
-                    <p>The code  return a new state object for actions with type ONLINE, which set the status property to the string online</p>
-                    <code>
-                      const defaultState = {
-                        user: 'CamperBot',
-                        status: 'offline',
-                        friends: '732,982',
-                        community: 'freeCodeCamp'
-                      };
-                      
-                      const immutableReducer = (state = defaultState, action) => {
-                        switch(action.type) {
-                          case 'ONLINE':
-                            // Don't mutate state here or the tests will fail
-                            return Object.assign({},state,{status:'online'})
-                          default:
-                            return state;
-                        }
-                      };
-                      
-                      const wakeUp = () => {
-                        return {
-                          type: 'ONLINE'
-                        }
-                      };
-                      
-                      const store = Redux.createStore(immutableReducer);
-                    </code>
-              </article>
-            </section>
-            <section class="main-section" id="rr">
-              <article>
-                <header>React Redux</header>
-                <p>React is a view library that you provide with data, then it renders the view in an efficient, predictable way. Redux is a state management framework that you can use to simplify the management of your application's state. Typically, in a React Redux app, you create a single Redux store that manages the state of your entire app. Your React components subscribe to only the pieces of data in the store that are relevant to their role. Then, you dispatch actions directly from React components, which then trigger store updates.</p>
-                <p>Although React components can manage their own state locally, when you have a complex app, it's generally better to keep the app state in a single location with Redux. There are exceptions when individual components may have local state specific only to them. Finally, because Redux is not designed to work with React out of the box, you need to use the <b>react-redux</b> package. It provides a way for you to pass Redux state and dispatch to your React components as props.</p>
+                <b>Sinal</b>
+                <code>
+                  //s is semaphore val
+                  //in signal 
+                  //here we increase semaphore value
+                  Wait(s)
+                  {
+                    s++;
+                  }
+                </code>
+                <em>Modification to the integer value of the semaphore in wait and signal must be executed indivisibly.Only one process can modify semaphore val at a time.</em>
+                <h3>Types of semaphore</h3>
+                <table>
+                  <tr>
+                    <th>
+                      Counting Semaphore
+                    </th>
+                    <th>
+                      Binary Semaphore/Mutex Lock
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      Range over unrestricted domain.
+                    </td>
+                    <td>
+                      Range over (0,1).
+                      Also called as mutex locks as they provide mutual exclusion.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      They are used to control access to a given resource consisting of finite number of instances.
+                      For eg : if there is a printer (resource) having 5 instances than semaphore value of printer will be 5 P(S) = 5
+                    </td>
+                    <td>
+                      It is used to apply lock. For eg : If there are two users who want to access printer then while one is accessing the resource the other will not be allowed to access it.
+                    </td>
+                  </tr>
+                </table>
+                <h3>Working of semaphore</h3>
+                <p>Let us consider above ex where we have 5 instances of printer resource</p>
+                <ol>
+                  <li>Initialize value of semaphore s=5</li>
+                  <li>Now if a process p wants to access the resource so first it will use the wait operation on semaphore s to check whether it is allowed to access resource or not</li>
+                  <li>Now if it is allowed in the wait operation it will decrease value of s to 4 </li>
+                  <li>After its operation is done it will perform the signal operation on semaphore where it will increase value of s back to 5 , as now the instance of resource he was using is free.</li>
+                </ol>
+                <em>Semaphore can also be used to solve many synchrnization problems</em>
+                <p>For eg : If P1 want to access S1 stmt and P2 wants to access S2 such that S2 should be executed only after S1</p>
+                <ol>
+                  <li>Initialize a var synch as 0</li>
+                  <li>After P1 has accessed S1 it will execute signal where it will increase synch to 1</li>
+                  <li>Since P1 will perform wait so until value of synch is >0 P1 cant execute S1</li>
+                  <li>Here synchronization is achieved</li>
+                </ol>
+                <h3><b>Disadvantages of semaphore</b></h3>
                 <ol>
                   <li>
-                    <h2>Managing state locally</h2>
-                    <code>
-                      class DisplayMessages extends React.Component {
-                        constructor(props) {
-                          super(props);
-                          this.state = {
-                            input: '',
-                            messages: []
-                          }
-                          this.handleChange = this.handleChange.bind(this);
-                          this.submitMessage = this.submitMessage.bind(this);
-                        }
-                        // Add handleChange() and submitMessage() methods here
-                       handleChange(e){
-                           this.setState({
-                             input : e.target.value,
-                             messages : this.state.messages
-                           })
-                        };
-                        submitMessage(){
-                          this.setState({
-                            messages : this.state.messages.concat(this.state.input),
-                            input : ''
-                          })
-                        };
-                        render() {
-                          return (
-                            < div>
-                              < h2>Type in a new Message:< /h2>
-                              { /* Render an input, button , and ul below this line */ }
-                               < input type="text" value={this.state.input} onChange = {this.handleChange}/>
-                               < button onClick = {this.submitMessage}>Add Message < /button>
-                               < ul>
-                               {this.state.messages.map(i => < li key={i+1}>{i}< /li>)}
-                               < /ul>
-                              { /* Change code above this line */ }
-                            < /div>
-                          );
-                        }
-                      };
-                    </code>
+                    <em>Busy Waiting</em>
+                    <p>When a process is in critical section only other process that tries to enter critical section must loop continuosly in its entry code.</p>
                   </li>
-                  <li>Managing Above Logic using redux</li>
-                  <code>
-                    // Define ADD, addMessage(), messageReducer(), and store here:
-//Step 1
-//action (js object)
-const ADD = 'ADD';
-
-//Step 2
-//action creator (js function)
-function addMessage(message){
-    return {
-        type : ADD,
-        message : message
-    }
-};
-
-//Step 3
-//reducer (js function)
-function messageReducer(state = [],action){
-    switch(action.type){
-        case ADD:
-           return [...state,action.message]
-        default:
-           return state
-    }
-}
-
-//Step 4
-//Redux Store
-const store = Redux.createStore(messageReducer)
-                  </code>
-           <li>
-             <h2>Connect Redux to React</h2>
-             <p>React access to the Redux store and the actions it needs to dispatch updates. React Redux provides its <b>react-redux package</b> to help accomplish these tasks.</p>
-             <p>React Redux provides a small API with two key features: Provider and connect</p>
-             <h5>Provider</h5>
-             <p>The Provider is a wrapper component from React Redux that wraps your React app. This wrapper then allows you to access the Redux store and dispatch functions throughout your component tree. Provider takes two props, the Redux store and the child components of your app. Defining the Provider for an App component might look like this:</p>
-             <code>
-              const Provider = ReactRedux.Provider;
-
-              class AppWrapper extends React.Component {
-                // Render the Provider below this line
-                render(){
-                  return(
-                 < Provider store={store}>
-                  < DisplayMessages/>
-                  < /Provider>
-                  );
+                  <li>
+                    <em>Spin lock</em>
+                    <p>It is a type of busy waiting : This lock causes the process/thread to simply wait in a loop if some other process is accessing the resource.</p>
+                  </li>
+                </ol>
+                <table>
+                  <em>It lets the process wait for indefinite time so not productive</em>
+                  <tr>
+                    <th>
+                      Mutex
+                    </th>
+                    <th>
+                      Spin Lock
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      We do not use while loop instead we let other process sleep so CPU wont have to spend time for doing nothing, but here we need to perform context switching.
+                    </td>
+                    <td>
+                       Here we use while loop so process will have to be active and keep on checking locks.
+                    </td>
+                  </tr>
+                </table>
+                <h3>Inplement binary semaphore in real world coding??</h3>
+                <em>
+                 1. P operation is also called wait, sleep, or down operation, and V operation is also called signal, wake-up, or up operation.</em>
+                 <em>Both operations are atomic and semaphore(s) is always initialized to one.</em>
+                <code>
+                  struct semaphore {
+                    enum value(0, 1);
+                 
+                    // q contains all Process Control Blocks (PCBs)
+                    // corresponding to processes got blocked
+                    // while performing down operation.
+                    Queue process> q;
+                 
+                } P(semaphore s)
+                {
+                    if (s.value == 1) {
+                        s.value = 0;
+                    }
+                    else {
+                        // add the process to the waiting queue
+                        q.push(P)
+                        sleep();
+                    }
                 }
-                // Change code above this line
-              };
-             </code>
-             <h5>MapStateToProp</h5>
-             <p>The Provider component allows you to provide state and dispatch to your React components, but you must specify exactly what state and actions you want. This way, you make sure that each component only has access to the state it needs. You accomplish this by creating two functions: mapStateToProps() and mapDispatchToProps().</p>
-             <p> Behind the scenes, React Redux uses the store.subscribe() method to implement mapStateToProps().</p>
-             <p>This function should take state as an argument, then return an object which maps that state to specific property names. These properties will become accessible to your component via props</p>
-             <p>For eg if your state is having only one array and you will to use it in your component just map it to a property name and use it</p>
-             <code>
-              const state = [];
-
-              // Change code below this line
-              function mapStateToProps(state){
-                  return {
-                      messages : state
-                  }
-              }
-             </code>
-             <h5>Map Dispatch to Props</h5>
-             <p>The mapDispatchToProps() function is used to provide specific action creators to your React components so they can dispatch actions against the Redux store. It's similar in structure to the mapStateToProps() function you wrote in the last challenge. It returns an object that maps dispatch actions to property names, which become component props. However, instead of returning a piece of state, each property returns a function that calls dispatch with an action creator and any relevant action data. You have access to this dispatch because it's passed in to mapDispatchToProps() as a parameter when you define the function, just like you passed state to mapStateToProps(). Behind the scenes, React Redux is using Redux's store.dispatch() to conduct these dispatches with mapDispatchToProps(). This is similar to how it uses store.subscribe() for components that are mapped to state.</p>
-             <p>For example, you have a loginUser() action creator that takes a username as an action payload. The object returned from mapDispatchToProps() for this action creator would look something like:</p>
-             <code>{
-              submitLoginUser: function(username) {
-                dispatch(loginUser(username));
-              }
-            }</code>
-             <h5>Connect</h5>
-             <p>Now that you've written both the mapStateToProps() and the mapDispatchToProps() functions, you can use them to map state and dispatch to the props of one of your React components. The connect method from React Redux can handle this task. This method takes two optional arguments, mapStateToProps() and mapDispatchToProps(). They are optional because you may have a component that only needs access to state but doesn't need to dispatch any actions, or vice versa.</p>
-             <p>To use this method, pass in the functions as arguments, and immediately call the result with your component. This syntax is a little unusual and looks like:</p>
-             <code>
-              connect(mapStateToProps, mapDispatchToProps)(MyComponent)
-             </code>
-             <em> If you want to omit one of the arguments to the connect method, you pass null in its place</em>
-
-           </li>
-                </ol>
-                <h3>Connecting in messages app</h3>
-                <code>
-                  // React-Redux:
-const mapStateToProps = (state) => {
-  return { messages: state }
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    submitNewMessage: (newMessage) => {
-       dispatch(addMessage(newMessage))
-    }
-  }
-};
-
-const Provider = ReactRedux.Provider;
-const connect = ReactRedux.connect;
-
-// Define the Container component here:
-const Container = connect(mapStateToProps,mapDispatchToProps)(Presentational)
-
-class AppWrapper extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    // Complete the return statement:
-    return (
-      < Provider store={store}>
-         < Container/>
-      < /Provider>
-    );
-  }
-};
+                V(Semaphore s)
+                {
+                    if (s.q is empty) {
+                        s.value = 1;
+                    }
+                    else {
+                 
+                        // select a process from waiting queue
+                        Process p=q.pop();
+                        wakeup(p);
+                    }
+                }
                 </code>
-                <h2>ToDo List Using React+Redux</h2>
-                <code>
-                  // React-Redux:
-const mapStateToProps = (state) => {
-  return { messages: state }
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    submitNewMessage: (newMessage) => {
-       dispatch(addMessage(newMessage))
-    }
-  }
-};
-
-const Provider = ReactRedux.Provider;
-const connect = ReactRedux.connect;
-
-// Define the Container component here:
-const Container = connect(mapStateToProps,mapDispatchToProps)(Presentational)
-
-class AppWrapper extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    // Complete the return statement:
-    return (
-      < Provider store={store}>
-         < Container/>
-      < /Provider>
-    );
-  }
-};
-
-                </code>
-              </article>
-            </section>
-            <section class="main-section" id="dep">
-              <article>
-                <h2>Dependencies to import</h2>
-                <code>
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { Provider, connect } from 'react-redux'
-import { createStore, combineReducers, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
-
-import rootReducer from './redux/reducers'
-import App from './components/App'
-
-const store = createStore(
-  rootReducer,
-  applyMiddleware(thunk)
-);
-
-ReactDOM.render(
-  < Provider store={store}>
-    < App/>
-  < /Provider>,
-  document.getElementById('root')
-);
-
-                </code>
-              </article>
-            </section>
-            <section class="main-section" id="gatsby">
-              <article>
-                <header>
-                  Gatsby
-                </header>
-                <h2>What is Gatsby?</h2>
-                <p>It's a <b>static site generator</b> i.e. once we are done with our project it will compile our project into a single directory with a single html file and static assets </p>
-                <p>It uses powerful preconfiguration so it provides:</p>
-                <ul>
-                  <li>Fast code splitting</li>
-                  <li>Server Side Rendering</li>
-                  <li>Fast Page Loads</li>
-                  <li>Source assets optimization</li>
-                  <li>Service Workers</li>
-                  <li>Data Prefetching</li>
-                </ul>
-                <p>Its built on top of react</p>
-                <h2>Getting Started</h2>
-                <ol>
-                  <li>Open cmd as administrator and run <code>
-                    npm install -g gatsby-cli
-                  </code></li>
-                  <li>cd directory where you wish to create the project</li>
-                  <li>Then do <b>gatsby new < project name > < starter > -default< /starter></b>
-                   if you do not specify starter github repo url it will take on by default or we can select one
-                   from the available starter templates available at gatsby website
-                  </li>
-                  <li>To start the local server cd into project and type <b>gatsby develop</b></li>
-                  <li>After the project is ready run <b>gatsby build</b> to deploy it</li>
-                </ol>
-              </article>
-            </section>
+                <h3>Deadlock VS Starvation</h3>
+                <img src="./deadlock.PNG"/>
+                <table>
+                  <tr>
+                    <th>
+                      Deadlock
+                    </th>
+                    <th>
+                      Starvation
+                    </th>
+                  </tr>
+                  
+                </table>
+             </article>
+           </section>
             </main>
     </body>
 </html>
