@@ -23,28 +23,10 @@
               <li><a class="nav-link" href="#threadconcept">Thread Concept</a></li>
               <li><a class="nav-link" href="#synchronisation">Synchronisation</a></li>
               <li>
-                <a class="nav-link" href="#Deadlock">Deadlock</a>
+                <a class="nav-link" href="#deadlock">Deadlock</a>
               </li>
               <li><a class="nav-link" href="#memorymaanagementstrategy">Memory Management Strategy</a></li>
               <li><a class="nav-link" href="#virtualmemorymanagement">Virtual Memory Management</a></li>
-              <li><a class="nav-link" href="#redux">Redux</a></li>
-              <li>
-                <a class="nav-link" href="#raction">Redux Action</a>
-              </li>
-              <li><a class="nav-link" href="#reducer">Redux Reducer</a></li>
-              <li><a class="nav-link" href="#thunk">Redux Thunk</a></li>
-              <li><a class="nav-link" href="#counter">Counter Using Redux</a></li>
-              <li><a class="nav-link" href="#simmut">State Immutability</a></li>
-              <li><a class="nav-link" href="#rr">React Redux</a></li>
-              <li><a class="nav-link" href="#dep">Redux Dependencies</a></li>
-              <li><a class="nav-link" href="#gatsby">Gatsby</a></li>
-              <li><a class="nav-link" href="#while_statement">while statement</a></li>
-              <li>
-                <a class="nav-link" href="#Function_declarations"
-                  >Function declarations</a
-                >
-              </li>
-              <li><a class="nav-link" href="#Reference">Reference</a></li>
             </ul>
           </nav>
           <main id="main-doc">
@@ -1586,8 +1568,294 @@ while (flag[i] == true && turn == i)
                       Starvation
                     </th>
                   </tr>
-                  
+                  <tr>
+                    <td>
+                      All processes keep waiting for each other to complete and none get executed.
+                     </td>
+                     <td>
+                      High priority processes keep executing and low priority processes are blocked
+                     </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Resources are blocked by the processes
+                    </td>
+                    <td>
+                      Resources are continuously utilized by high priority processes
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Necessary conditions Mutual Exclusion, Hold and Wait, No preemption, Circular Wait
+                    </td>
+                    <td>
+                      Priorities are assigned to the processes
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Also known as Circular wait
+                    </td>
+                    <td>
+                      Also know as lived lock
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      It can be prevented by avoiding the necessary conditions for deadlock
+                    </td>
+                    <td>
+                      It can be prevented by Aging
+                    </td>
+                  </tr>
                 </table>
+                <h2>Classical Problems On Synchronization</h2>
+               <h3><b>Bounded Buffer</b></h3>
+               <p>The bounded-buffer problems (aka the producer-consumer problem) is a classic example of concurrent access to a shared resource. A bounded buffer lets multiple producers and multiple consumers share a single buffer. Producers write data to the buffer and consumers read data from the buffer.</p>
+                <p>The size of buffer is fixed lets say if it is n then buffer can store max n items.</p>
+               <p>Here we have three variables</p>
+               <ol>
+                 <li>Mutex : It is the mutual exclusion variable which is 1 if critical section is free and 0 if critical section is occupied</li>
+                 <li>Full : It stores the number of entries of buffer already filled</li>
+                 <li>Empty : It stores the number of entries of buffer which are empty.</li>
+               </ol>
+               <h3>Structure Of producer code</h3>
+               <code>
+                 //here it will check if there is space in the buffer then will decrease value of empty space by 1.
+                 //if empoty space is <=0 it will get blocked
+                 it will produce an item in pnext
+                 wait(empty)
+                 //if mutex==1 i.e. critical section then it will decrease it to 0 i.e. critical section occupied.
+                 //if mutex =0 then get blocked
+                 wait (mutex)
+                 ********************Critical Section *******************
+                 buffer <= pnext
+                 ********************************************************
+                 //it is leaving cs so will make mutex back to 1
+                 signal(mutex)
+                 //it has occupied one space so will increase value of occupied space.
+                 signal(full)
+               </code>
+               <h3>Structure Of Consumer code</h3>
+               <code>
+                 //here it will check if there is item in the buffer then will decrease value of occupied space by 1.
+                 //if occupied space is <=0 it will get blocked
+                 wait(full)
+                 //if mutex==1 i.e. critical section then it will decrease it to 0 i.e. critical section occupied.
+                 //if mutex =0 then get blocked
+                 wait (mutex)
+                 ********************Critical Section *******************
+                 consume item in nextC
+                 nextC <= buffer
+                 ********************************************************
+                 //it is leaving cs so will make mutex back to 1
+                 signal(mutex)
+                 //it has occupied one space so will increase value of occupied space.
+                 signal(empty)
+               </code>
+               <h3>Reader-Writer Problem</h3>
+               <p>
+                 There is a single file one person is writing in that file other is reading.
+               </p>
+               Rules
+               <ol>
+                <li>
+                  Only one writer is allowed to write at a time.
+                </li>
+                <li>
+                  When a writer is writing no reader is allowed to read.
+                </li>
+                <li>Multiple readers can read simultaneously.</li>
+                <li>At the time of reading writing is not allowed.</li>
+               </ol>
+               <b>Solution using binary semaphore</b>
+               <em>Soliton 1 : This solution ensures that at a time only one reader or one writer is allowed to enter critical section.</em>
+               Code solution at writer
+               //initially value of mutex is 1 i.e. no lock
+               <code>
+                 //it will make mutex=0 i.e put lock
+                 wait(mutex)
+                 Write here
+                 //after work done again free the lock by making mutex =1 
+                 signal(mutex)
+               </code>
+               Code solution at reader
+               //initially value of mutex is 1 i.e. no lock
+               <code>
+                 //it will make mutex=0 i.e put lock
+                 wait(mutex)
+                 Read here
+                 //after work done again free the lock by making mutex =1 
+                 signal(mutex)
+               </code>
+               <em>Solution 2 : Since we want multiple readers to be allowed to read together</em>
+               <p>So only first reader will execute wait i.e. check for mutex=1 rest readers can directly enter the critical section</p>
+                To achieve this:
+                Writers code will remain same
+                For readers only first reader will acquire the lock and last reader will release the lock
+                <em>it maybe diff reader will try to access same var creating sync problem so another sync var will be used for them</em>
+                <code>
+                 wait(rdmutex)
+                  readers++
+                  if(reader==1)
+                    wait(mutex)
+                  signal(rdmutex)
+                  Read Here
+                  wait(rdmutex)
+                  readers--
+                  if(readers==0)
+                  signal(mutex)
+                  signal(rdmutex)
+                </code>
+               <h3>Dining Philosopher Problem</h3>
+               <img src="./dining.PNG"/>
+               <p>Philosophers are sitting around a table and they are dining, they have one central ball of food and chopsticks between plates whenever they feel hungry they will acquire the adjaent chopsticks if they are available and take food from central ball to their plate and after eating they will release the chopsticks so we need to synchronize chopsticks.</p>
+               <em>ith philosopher can access ith and i+1%5th chopstick</em>
+               Dining philosopher Algorithm
+               Chopstick is an array of location [0,4] where all the locations can hold a semaphore and will be initialized to value 1 i.e. no lock
+               <code>
+                repeat
+                   wait(chopstick[i])
+                   wait(chopstick[(i+1)%5])
+                   **********
+                   eat
+                   *********
+                   signal(chopstick[i])
+                   signal(chopstick[(i+1)%5])
+                   *******
+                   think
+                until false
+               </code>
+               <b>Above code can result in deadlock so solution</b>
+               <ol>
+                 <li>
+                  Allow max 4 philosophers so atleast one philosopher will have 2 chopsticks
+                 </li>
+                 <li>
+                   Philosophers can start eating only when they have 2 chopsticks.
+                 </li>
+                 <li>
+                    The philosophers with even numbers will take right chopstick and with odd number will take left chopstick.
+                 </li>
+               </ol>
+             </article>
+           </section>
+           <section class="main-section" id="deadlock">
+             <article>
+               <header>Deadlock</header>
+               <h3>What is deadlock?</h3>
+               <p>In general, resources allocated to a process are not preemptable; this means that once a resource has been allocated to a process, there is no simple mechanism by which the system can take the resource back from the process unless the process voluntarily gives it up or the system administrator kills the process. This can lead to a situation called deadlock. A set of processes or threads is deadlocked when each process or thread is waiting for a resource to be freed which is controlled by another process. Here is an example of a situation where deadlock can occur.</p>
+               <code>
+                Mutex M1, M2;
+
+                /* Thread 1 */
+                while (1) {
+                   NonCriticalSection()
+                   Mutex_lock(&M1);
+                   Mutex_lock(&M2);
+                   CriticalSection();
+                   Mutex_unlock(&M2);
+                   Mutex_unlock(&M1);
+                }
+                
+                /* Thread 2 */
+                while (1) {
+                   NonCriticalSection()
+                   Mutex_lock(&M2);
+                   Mutex_lock(&M1);
+                   CriticalSection();
+                   Mutex_unlock(&M1);
+                   Mutex_unlock(&M2);
+                }
+               </code>
+               Suppose thread 1 is running and locks M1, but before it can lock M2, it is interrupted. Thread 2 starts running; it locks M2, when it tries to obtain and lock M1, it is blocked because M1 is already locked (by thread 1). Eventually thread 1 starts running again, and it tries to obtain and lock M2, but it is blocked because M2 is already locked by thread 2. Both threads are blocked; each is waiting for an event which will never occur.
+               <em>Traffic gridlock is an everyday example of a deadlock situation.</em>
+               <h3>Effect of Deadlock on other processes which are not deadlocked?</h3>
+               <p>If OS has a deadlock prevention or detection system in place then it will have a negative impact on the performance because whenever a process or thread requests a resource the system will have to check whether grabtinbg this request could cause a potential deadlock situation.</p>
+               <h3>Conditions for deadlock</h3>
+               <p>In order for deadlock to occur, four conditions must be true.</p>
+               <ol>
+                 <li>
+                   <b>Mutual exclusion</b>
+                   <p> Each resource is either currently allocated to exactly one process or it is available. (Two processes cannot simultaneously control the same resource or be in their critical section).</p>
+                 </li>
+                 <li>
+                   <b>Hold and Wait</b>
+                   <p> processes currently holding resources can request new resources</p>
+                 </li>
+                 <li>
+                   <b>No preemption</b>
+                   <p>Once a process holds a resource, it cannot be taken away by another process or the kernel.</p>
+                 </li>
+                 <li>
+                   <b>Circular wait</b>
+                   <p>Each process is waiting to obtain a resource which is held by another process.</p>
+                 </li>
+               </ol>
+               <h3>Ways to handle deadlock</h3>
+               <ol>
+                 <li>Prevention and deadlock : Make sure atleast one of the above four condition should not meet</li>
+                 <li>Detection and recovery
+                   <ul><li>
+                     <h3>Bankers Algorithm</h3>
+                     <p>Its also known as <b>deadlock avoidance</b> algo as here we will have to tell the os about how many process are going to arrive , which process , which resource,how many resource and for how much time.</p>
+                      <p>It is also used for deadlock detection that to detect whether deadlock can ocur in future or not</p>
+                      <p>Here given : no. of processes, no. of resources, no. of instances allocated, max need of every process, total instances of each resource avlbl</p>
+                      <p>If deadlock then unsafe else safe then we will have safe sequence i.e. the sequence in which resources are allocated.</p>
+                      <p>For that we will check remaining need and availablity if for all the processes remaining need > availability</p>
+                      <b>It is not possible to implement it in real life</b>
+                   </li>
+                  <li>
+                    <h3>
+                      Ostrich Algorithm
+                    </h3>
+                    <p>Just as when cyclone occurs ostrich puyt iots head in sand and pretends as if no prblm has occured similarly we can just ignore when deadlock occurs</p>
+                    <p>It is applicable only when deadlock occurs very rarely in our system and its very difficult to detect deadlock and very costly to avoid it. </p>
+                    <em>Windows and Unix use this.</em>
+                  </li>
+                  <li>
+                    <h3>
+                      Resource Preemption
+                    </h3>
+                  </li>
+                  </ul>
+                 </li>
+                 <li>
+                   Ignorance
+                 </li>
+               </ol>
+             </article>
+           </section>
+           <section id="memorymanagementstrategy" class="main-section">
+             <article>
+                <header>
+                  Main Memory Management
+                </header>
+                <p>Some Imp points</p>
+                <ol>
+                  <li>
+                    CPU can directly access Registers and Main memory.
+                  </li>
+                  <li>
+                    Protection of memory space is handled by the hardware.
+                  </li>
+                  <li>
+                    OS loads Base and Limit Registers.
+                  </li>
+                  <li>
+                    Mapping of logical to physical address is done by MMU.
+                  </li>
+                </ol>
+                <h3>Swaping</h3>
+                <p>
+                  Swapping is a memory management scheme in which any process can be temporarily swapped from main memory to secondary memory so that the main memory can be made available for other processes. It is used to improve main memory utilization.
+                </p>
+                <ul>
+                  <li>Ex : Priority based scheduling</li>
+                  <li>Done by dispatcher</li>
+                  <li>Context switching time in swapping is very high</li>
+                  <li>OS cant swap process having pending I/P O/P.</li>
+                </ul>
              </article>
            </section>
             </main>
