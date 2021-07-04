@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>
+            Data Structure Concepts
+        </title>
+        <link rel="stylesheet" href="./style.css"/>
+    </head>
+    <body>
+        <nav id="navbar">
+            <header id="title">Data Structure</header>
+            <ul>
+              <li><a class="nav-link" href="#overview">Tree Data Structure</a></li>
+            </ul>
+          </nav>
+          <main id="main-doc">
+            <section class="main-section" id="overview">
+              <header>Tree Data Structure</header>
+              <h3>Comparative study of different types of tree data structure</h3>
+              <table>
+                <tr>
+                  <th>
+                    Name
+                  </th>
+                  <th>
+                    What(Rules)
+                  </th>
+                  <th>
+                    Why
+                  </th>
+                  <th>
+                    When
+                  </th>
+                  <th>
+                    Time Complexity
+                  </th>
+                  <th>
+                    Space Complexity
+                  </th>
+                  <th>
+                    Applications
+                  </th>
+                  <th>
+                    Image
+                  </th>
+                </tr>
+                <tr>
+                  <td>General Tree</td>
+                  <td>It can have an infinite number of children. It is the superset of all other types of trees.</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>File Systems</td>
+                  <td><img src="https://miro.medium.com/max/571/1*p_GfAlQHp4btK9Monl4wQQ.png"/></td>
+                </tr>
+                <tr>
+                  <td>Binary Tree</td>
+                  <td>Any node of a binary tree can have at most two children.</td>
+                  <td> binary trees are mainly used for searching and sorting as they provide a means to store data hierarchically.</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td><img src="https://miro.medium.com/max/521/1*fLRe-YsCU_Er4BkHumIjZQ.png"/></td>
+                </tr>
+                <tr>
+                  <td>Full Binary Tree</td>
+                  <td> A full binary tree (sometimes proper binary tree or 2-tree) is a tree in which every node other than the leaves has two children</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td><img src="data:image/jpeg;base64,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"/></td>
+                </tr>
+                <tr>
+                  <td>Complete Binary Tree</td>
+                  <td> A binary tree in which every level (depth), except possibly the deepest, is completely filled. At depth n, the height of the tree, all nodes must be as far left as possible.</td>
+                  <td>A complete binary tree has an interesting property that we can use to find the children and parents of any node. If the index of any element in the array is i , the element in the index 2i+1 will become the left child and element in 2i+2 index will become the right child.</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td><img src="https://web.cecs.pdx.edu/~sheard/course/Cs163/Graphics/CompleteBinary.jpg"/></td>
+                </tr>
+                <tr>
+                  <td>Binary Search Tree</td>
+                  <td>Binary search tree, the value of all nodes in left sub tree is always less than or equal to the parent node and that of the right subtree is always greater than or equal to the parent node.</td>
+                  <td>Binary search trees are collections that can efficiently maintain a dynamically changing dataset in sorted order, for some "sortable" type.*
+
+                    Having a sorted array is useful for many tasks because it enables binary search to be used, to efficiently locate elements. The problem with a sorted array is that elements can't be inserted and removed efficiently.</td>
+                  <td>BST will only work when storing a sortable data type </td>
+                  <td>Faster than array for search , insert, delete <b>O(logn) VS o(n)</b>
+                   Slower than array in terms of access <b>O(log n) VS O(1)</b></td>
+                  <td>O(n)</td>
+                  <td>Binary search trees support everything you can get from a sorted array: efficient search, in-order forward/backwards traversal from any given element, predecessor /successor element search, and max /min queries, with the added benefit of efficient inserts and deletes. With a self-balancing binary search tree (BST), all of the above run in logarithmic time.</td>
+                  <td><img src="https://miro.medium.com/max/438/1*M1wVV2FrTRQrjFdh--oQOw.jpeg"/></td>
+                </tr>
+                <tr>
+                  <td>AVL Tree</td>
+                  <td> It is the first dynamically balancing tree. In this tree the height of two child subtrees of any node differ by at most 1.i.e for child subtree of any node</td>
+                  <td>AVL tree controls the height of a binary search tree and it prevents it from becoming skewed. Because when a binary tree becomes skewed, it is the worst case (O (n)) for all the operations. By using the balance factor, AVL tree imposes a limit on the binary tree and thus keeps all the operations at O (log n).</td>
+                  <td> AVL trees are best applied in situations of frequent data lookup rather than frequent insertion and deletion operations. </td>
+                  <td>Due to the balancing property, the insertion, deletion and search operations take O ( l o g n ) O(log n) O(logn) in both the average and the worst cases. Therefore, AVL trees give us an edge over Binary Search Trees which have an O ( n ) O(n) O(n) time complexity in the worst case scenario.</td>
+                  <td>O(n)</td>
+                  <td>Trains in a railway system.
+
+                    I am not sure how IRCTC (Or, any other Railway system) implements it, but taking the fact into account that newer trains come up very few every year and remains constant for a good period of time, an AVL implementation of this would be better than any other tree for searching.
+                    
+                    AVL trees are beneficial in the cases where you are designing some database where insertions and deletions are not that frequent but you have to frequently look-up for the items present in there.</td>
+                  <td><img src="https://miro.medium.com/max/328/1*Cji3x98gdMJ0j6S7DCqdRQ.png"/></td>
+                </tr>
+                <tr>
+                  <td>Red-Black Tree</td>
+                  <td> It is another kind of self-balancing tree where the nodes are colored red and black to keep the tree balanced. As it should follow certain rules: root node is black, no two adjacent nodes can be red, leaf node is black, every path of a node to any of its descendant null node must have an equal number of black nodes.</td>
+                  <td>The AVL trees are more balanced compared to Red-Black Trees, but they may cause more rotations during insertion and deletion. So if your application involves many frequent insertions and deletions, then Red Black trees should be preferred. And if the insertions and deletions are less frequent and search is a more frequent operation, then AVL tree should be preferred over Red-Black Tree.</td>
+                  <td> Red-black trees are best applied in situations of frequent insertion deletion rather than frequent look up operations. </td>
+                  <td>Due to the balancing property, the insertion, deletion and search operations take O ( l o g n ) O(log n) O(logn) in both the average and the worst cases <b>strictly</b>. Therefore, Redblack trees give us an edge over AVL Trees which have an O (log n ) O(log n) O(log n) time complexity in the worst case scenario <b>Roughly</b>.</td>
+                  <td>O(n)</td>
+                  <td>Most of the self-balancing BST library functions like map and set in C++ (OR TreeSet and TreeMap in Java) use Red-Black Tree. It is used to implement CPU Scheduling Linux. Completely Fair Scheduler uses it. Besides they are used in the K-mean clustering algorithm for reducing time complexity.</td>
+                  <td><img src="https://miro.medium.com/max/533/1*gP1XrkOPweE4yJNKn5IPMQ.png"/></td>
+                </tr>
+                <tr>
+                  <td>M-Way Tree</td>
+                  <td> A multiway tree is a tree that can have more than two children. A multiway tree of order m (or an m-way tree) is one in which a tree can have maxm m children and maxm m-1 key elements in it.</td>
+                  <td>A main problem with binary tress is that the search path may become deep.The main point with M-Way trees is to reduce the height.we have an improvement with respect to binary trees (a reduction of the height) by a constant factor of lg(M)</td>
+                  <td>It is more efficient but more complex so it is generally used when extra efficiency is necessary, One particular situation is when moving from one node to another is particularly expensive. </td>
+                  <td></td>
+                  <td></td>
+                  <td>Main uses of m-way trees are external file systems (ISAM, VSAM) and spell checkers , to store data on permanent storage (hard disk).Typically used for database systems.
+                  </td>
+                  <td><img src="https://lh3.googleusercontent.com/proxy/iO8OyipdoWbyib6v4gwqKQf1DVSI8qiCYmlSBt3ogypEMxHORy_kDFA-PokAtsPdkMUCxORH4x9NGspkAafyNPlaVqeBlGsPbsrZjsmf77jjwFwRV4GL-uj0B7rYvb4-"/></td>
+                </tr>
+                <tr>
+                  <td>B Tree</td>
+                  <td>The set formulation of the B-tree rules: Every B-tree depends on a positive constant integer called MINIMUM, which is used to determine how many elements are held in a single node.<ol>
+                    <li>
+                      The root can have as few as one element (or even no elements if it also has no children); every other node has at least MINIMUM elements.
+                    </li>
+                    <li>
+                      The maximum number of elements in a node is twice the value of MINIMUM.
+                    </li>
+                    <li>
+                      The elements of each B-tree node are stored in a partially filled array, sorted from the smallest element (at index 0) to the largest element (at the final used position of the array).
+                    </li>
+                    <li>
+                      The number of subtrees below a nonleaf node is always one more than the number of elements in the node.
+                      Subtree 0, subtree 1, ...
+                    </li>
+                    <li>
+                      For any nonleaf node:
+An element at index i is greater than all the elements in subtree number i of the node, and
+An element at index i is less than all the elements in subtree number i + 1 of the node.
+                    </li>
+                    <li>
+                      Every leaf in a B-tree has the same depth. Thus it ensures that a B-tree avoids  the problem of a unbalanced tree.
+                    </li>
+                  </ol></td>
+                  <td>A main problem with binary tress is that the search path may become deep.The main point with M-Way trees is to reduce the height.we have an improvement with respect to binary trees (a reduction of the height) by a constant factor of lg(M)</td>
+                  <td> Unlike self-balancing binary search trees, it is optimized for systems that read and write large blocks of data </td>
+                  <td>Suppose a B-tree has n elements and M is the maximum number of children a node can have. What is the maximum depth the tree could have? What is the minimum depth the tree could have?
+                    <ul>
+                      <li>
+                        The worst-case depth (maximum depth) of a B-tree is: logM/2 n.
+                      </li>
+                      <li>
+                        The best-case depth (minimum depth) of a B-tree is: logM n.
+                      </li>
+                    </ul>
+                    Worst-Case Times for B-Trees
+                    Adding or removing an element in a B-tree with n elements is O(log n).
+                  </td>
+                  <td></td>
+                  <td>It is most commonly used in database and file systems.
+                  </td>
+                  <td><img src="https://www.cpp.edu/~ftang/courses/CS241/notes/images/trees/b-tree1.bmp"/></td>
+                </tr>
+                <tr>
+                  <td>
+                    B+ Tree
+                  </td>
+                  <td>
+                    The root may be either a leaf or a node with two or more children.
+                    A B+ tree can be viewed as a B-tree in which each node contains only keys (not key–value pairs), and to which an additional level is added at the bottom with linked leaves.
+                  </td>
+                  <td>
+                    The drawback of B-tree used for indexing, however is that it stores the data pointer (a pointer to the disk file block containing the key value), corresponding to a particular key value, along with that key value in the node of a B-tree. This technique, greatly reduces the number of entries that can be packed into a node of a B-tree, thereby contributing to the increase in the number of levels in the B-tree, hence increasing the search time of a record.
+
+B+ tree eliminates the above drawback by storing data pointers only at the leaf nodes of the tree. Thus, the structure of leaf nodes of a B+ tree is quite different from the structure of internal nodes of the B tree. It may be noted here that, since data pointers are present only at the leaf nodes, the leaf nodes must necessarily store all the key values along with their corresponding data pointers to the disk file block, in order to access them. Moreover, the leaf nodes are linked to provide ordered access to the records. The leaf nodes, therefore form the first level of index, with the internal nodes forming the other levels of a multilevel index. 
+                  </td>
+                  <td>
+                    B+ Tree are used to store the large amount of data which can not be stored in the main memory. Due to the fact that, size of main memory is always limited, the internal nodes (keys to access records) of the B+ tree are stored in the main memory whereas, leaf nodes are stored in the secondary memory.
+                  </td>
+                  <td>
+
+                  </td>
+                  <td>
+
+                  </td>
+                  <td></td>
+                  <td>
+                    <img src="https://www.softwaretestinghelp.com/wp-content/qa/uploads/2019/08/B-tree.png"/>
+
+                  </td>
+                </tr>
+              </table>
+              <article>
+                </article>
+                </section>
+                </main>
+                </body>
+</html>
