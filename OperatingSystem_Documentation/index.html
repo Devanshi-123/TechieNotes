@@ -1905,6 +1905,63 @@ while (flag[i] == true && turn == i)
                  </li>
                  <li><h4>How to make sure that user process cant access the memory of any other process?</h4></li>
                </ol>
+               <h2>Contiguos memory allocation</h2>
+                <h3>Address Translation : Base and Limit Register</h3>
+                <img src="https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/images/Chapter8/8_02_HardwareAddressProtection.jpg"/>
+                <p> A pair of base and limit register define the logical address space.
+                  They are relocation registers used to protect user processes from each other  and from changing operating-system code and data.
+                  The OS allocates one contiguous span of primary memory to a process P.
+                </p>
+                <b>Base Register</b>
+                <p>It contains the lowest address allocated to P</p>
+                <b>Limit Register</b>
+                <p>It contains the number of bytes in the allocation</p>
+                <p>Using the values in the base and limit registers, hardware checks every address generated in user mode.</p>
+                <img src="https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/images/Chapter8/8_01_LogicalAddressSpace.jpg"/>
+                <h4>Contiguos memory allocation can be divided into </h4>
+                <ol>
+                  <li><em>Fixed Partitioning</em>
+                    <br/>
+                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/444-4.png"/>
+                    <p>This is the oldest and simplest technique used to put more than one processes in the main memory. In this partitioning, number of partitions (non-overlapping) in RAM are fixed but size of each partition may or may not be same. As it is contiguous allocation, hence no spanning is allowed. Here partition are made before execution or during system configure.</p>
+                    <p>Sum of <b>Internal Fragmentation</b>  in every block = (4-1)+(8-7)+(8-7)+(16-14)= 3+1+1+2 = 7MB.</p>
+                    <p>Suppose process P5 of size 7MB comes. But this process cannot be accommodated inspite of available free space because of contiguous allocation (as spanning is not allowed). Hence, 7MB becomes part of <b>External Fragmentation</b>.</p>
+                  </li>
+                  <b>Advantages</b>
+                  <ul>
+                      <li>
+                        Easy to implement.
+                      </li>
+                      <li>
+                        Little OS overhead 
+                      </li>
+                  </ul>
+                  <b>Disadvantages</b>
+                  <ul>
+                    <li>
+                      <em>Internal Fragmentation</em>
+                      <p>Main memory use is inefficient. Any program, no matter how small, occupies an entire partition. This can cause internal fragmentation.</p>
+                    </li>
+                    <li>
+                      <em>External Fragmentation</em>
+                      <p>The total unused space (as stated above) of various partitions cannot be used to load the processes even though there is space available but not in the contiguous form (as spanning is not allowed).</p>
+                    </li>
+                    <li>
+                      Limit process size - Process of size greater than size of partition in Main Memory cannot be accommodated.
+                    </li>
+                    <li>
+                      Limitation on degree of multiprogramming - Partition in Main Memory are made before execution or during system configure.Number of processes greater than number of partitions in RAM is invalid in Fixed Partitioning.
+                    </li>
+                  </ul>
+                  <li><em>Variable Partitioning</em></li>
+                </ol>                
+              </article>
+           </section>
+           <section id="virtualmemorymanagement" class="main-section">
+             <article>
+                   <header>
+                     Virtual Memory Management
+                   </header>
              </article>
            </section>
             </main>
