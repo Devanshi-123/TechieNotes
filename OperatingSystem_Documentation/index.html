@@ -1953,8 +1953,59 @@ while (flag[i] == true && turn == i)
                       Limitation on degree of multiprogramming - Partition in Main Memory are made before execution or during system configure.Number of processes greater than number of partitions in RAM is invalid in Fixed Partitioning.
                     </li>
                   </ul>
-                  <li><em>Variable Partitioning</em></li>
-                </ol>                
+                  <li><em>Variable Partitioning</em>
+                  <br/>
+                  <img src="https://media.geeksforgeeks.org/wp-content/uploads/111-10.png"/>
+                  <p>It is a part of Contiguous allocation technique. It is used to alleviate the problem faced by Fixed Partitioning. In contrast with fixed partitioning, partitions are not made before the execution or during system configure.</p>
+                </li>
+                <b>Advantages</b>
+                <ul>
+                    <li>
+                      The partition size varies according to the need of the process so that the internal fragmentation can be avoided to ensure efficient utilisation of RAM
+                    </li>
+                    <li>
+                      No restriction on Degree of Multiprogramming
+                    </li>
+                    <li>
+                      No Limitation on the size of the process
+                    </li>
+                </ul>
+                <b>Disadvantages</b>
+                <ul>
+                  <li>
+                    Difficult Implementation as it involves allocation of memory during run-time rather than during system configure.
+                  </li>
+                  <li>
+                    <b>External Fragmentation</b>
+                    <p>There will be external fragmentation inspite of absence of internal fragmentation.
+                      For example, suppose in above example- process P1(2MB) and process P3(1MB) completed their execution. Hence two spaces are left i.e. 2MB and 1MB. Let’s suppose process P5 of size 3MB comes. The empty space in memory cannot be allocated as no spanning is allowed in contiguous allocation. The rule says that process must be contiguously present in main memory to get executed. Hence it results in External Fragmentation.</p>
+                  </li>
+                </ul>
+                </ol>    
+                <h3>Dynamic memory allocation problem</h3>            
+                <p>The problem with dynamic memory allocation is that it is not deallocated itself, developer responsibility to deallocate the allocated memory explicitly. If we cannot release the allocated memory, it can because of memory leak and make your machine slow.</p>
+                <h3>Contiguos Memory Allocation Techniques</h3>
+                <ol>
+                  <li><b>Best-Fit</b>
+                  <p>This method keeps the free/busy list in order by size – smallest to largest. The operating system first search throughout the memory and allocates the job to the minimum possible memory partition, making the memory allocation efficient.Here the jobs are in the order from smallest job to largest job.  </p>
+                  <ul>Advantages<li>Memory Efficient</li></ul>
+                  <ul>Disadvantages<li>Slow Process</li></ul>
+                  </li>
+                  <li><b>Worst-Fit</b>
+                  <p>Worst Fit allocates a process to the partition which is largest sufficient among the freely available partitions available in the main memory. If a large process comes at a later stage, then memory will not have space to accommodate it.</p></li>
+                  <li><b>First-Fit</b>
+                  <p> In this method, first job claims the first available memory with space more than or equal to it’s size. The operating system doesn’t search for appropriate partition but just allocate the job to the nearest memory partition available with sufficient size.</p>
+                  <ul>Advantages<li>It is fast in processing. </li></ul>
+                  <ul>Disadvantages<li>It wastes a lot of memory.</li></ul>
+                </li>
+                  <li><b>Next-Fit</b>
+                  <p>Next fit is a modified version of 'first fit'. It begins as the first fit to find a free partition but when called next time it starts searching from where it left off, not from the beginning. This policy makes use of a roving pointer. The pointer moves along the memory chain to search for a next fit</p></li>
+                </ol>
+                <h3>Solution to External Fragmentation</h3>
+                <ol>
+                  <li><h4>Compaction</h4>
+                  <p>In compaction, all the free partitions are made contiguous and all the loaded partitions are brought together. By applying this technique, we can store the bigger processes in the memory. The free partitions are merged which can now be allocated according to the needs of new processes.</p></li>
+                </ol>
               </article>
            </section>
            <section id="virtualmemorymanagement" class="main-section">
