@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>
+             DataBase Management Concepts
+        </title>
+        <link rel="stylesheet" href="./style.css"/>
+    </head>
+    <body>
+        <nav id="navbar">
+            <header id="title">DBMS</header>
+            <ul>
+              <li><a class="nav-link" href="#overview">Overview</a></li>
+              <li>
+                <a class="nav-link" href="#processconcept"
+                  >Process Concept</a
+                >
+              </li>
+              <li>
+                <a class="nav-link" href="#processscheduling">Process Scheduling</a>
+              </li>
+              <li><a class="nav-link" href="#threadconcept">Thread Concept</a></li>
+              <li><a class="nav-link" href="#synchronisation">Synchronisation</a></li>
+              <li>
+                <a class="nav-link" href="#deadlock">Deadlock</a>
+              </li>
+              <li><a class="nav-link" href="#memorymaanagementstrategy">Memory Management Strategy</a></li>
+              <li><a class="nav-link" href="#virtualmemorymanagement">Virtual Memory Management</a></li>
+            </ul>
+          </nav>
+          <main id="main-doc">
+            <section class="main-section" id="overview">
+              <header>Overview</header>
+              <article>
+                 <h3>Data</h3>
+                 <p>Data is a collection of a distinct small unit of information. It can be used in a variety of forms like text, numbers, media, bytes, etc. it can be stored in pieces of paper or electronic memory, etc.</p>
+                 <h3>Database</h3>
+                 <p>A database is an organized collection of data, so that it can be easily accessed and managed.</p>
+                 <h3>Database Management System</h3>
+                 <p>Database Management System (DBMS) is a software for storing and retrieving users' data while considering appropriate security measures. It consists of a group of programs which manipulate the database. The DBMS accepts the request for data from an application and instructs the operating system to provide the specific data. In large systems, a DBMS helps users and other third-party software to store and retrieve data.
+                  It provides an interface between the data and the software application.
+                 </p>
+                 <h3>Why do we need DBMS?</h3>
+                 <p><ul>
+                   <li>Creation of database</li>
+                   <li>Retreival of information from the database.</li>
+                   <li>Updating the database.</li>
+                   <li>Managing the database.</li>
+                 </ul></p>
+                 <h3>DBMS VS File System</h3>
+                 <table>
+                   <tr>
+                     <th>DBMS</th>
+                     <th>File System</th>
+                   </tr>
+                   <tr>
+                     <td>
+                      DBMS is a collection of data. In DBMS, the user is not required to write the procedures.
+                     </td>
+                     <td>
+                      File system is a collection of data. In this system, the user has to write the procedures for managing the database.
+                     </td>
+                   </tr>
+                   <tr>
+                     <td>DBMS gives an abstract view of data that hides the details.</td>
+                     <td>File system provides the detail of the data representation and storage of data.</td>
+                   </tr>
+                   <tr>
+                     <td>DBMS provides a crash recovery mechanism, i.e., DBMS protects the user from the system failure.</td>
+                     <td>File system doesn't have a crash mechanism, i.e., if the system crashes while entering some data, then the content of the file will lost.</td>
+                   </tr>
+                   <tr>
+                     <td>DBMS provides a good protection mechanism.</td>
+                     <td>It is very difficult to protect a file under the file system.</td>
+                   </tr>
+                   <tr>
+                     <td>
+                      DBMS contains a wide variety of sophisticated techniques to store and retrieve the data.
+                     </td>
+                     <td>
+                      File system can't efficiently store and retrieve the data.
+                     </td>
+                   </tr>
+                   <tr>
+                     <td>DBMS takes care of Concurrent access of data using some form of locking.</td>
+                     <td>In the File system, concurrent access has many problems like redirecting the file while other deleting some information or updating some information.</td>
+                   </tr>
+                 </table>
+                 <h3>Functions of Database Administrator</h3>
+                 <ol>
+                   <li>
+                    The DBA creates the original database schema by executing a set of data deﬁnition statements in the DDL. 
+                   </li>
+                   <li>
+                    Storage structure and access-method deﬁnition.
+                   </li>
+                   <li>
+                    Granting of authorization for data access
+                   </li>
+                   <li>
+                    Periodically backing up the database, either onto tapes or onto remote servers, to prevent loss of data in case of disasters such as ﬂooding.
+                   </li>
+                 </ol>
+                 <h3>Two Tier VS Three Tier Database Architecture</h3>
+                 <table>
+                   <tr>
+                     <th>
+                       Two tier
+                     </th>
+                     <th>
+                       Three tier
+                     </th>
+                   </tr>
+                   <tr>
+                     <td>
+                      It is a Client-Server Architecture.
+                     </td>
+                     <td>
+                      It is a Web-based application.
+                     </td>
+                   </tr>
+                   <tr>
+                     <td>
+                      In two-tier, the application logic is either buried inside the user interface on the client or within the database on the server (or both).
+                     </td>
+                     <td>
+                      In three-tier, the application logic or process resides in the middle-tier, it is separated from the data and the user interface
+                     </td>
+                   </tr>
+                   <tr>
+                     <td>	Two-tier architecture consists of two layers : Client Tier and Database (Data Tier).</td>
+                     <td>Three-tier architecture consists of three layers : Client Layer, Business Layer and Data Layer.</td>
+                   </tr>
+                   <tr>
+                     <td>
+                      It is easy to build and maintain.
+                     </td>
+                     <td>
+                      It is complex to build and maintain.
+                     </td>
+                   </tr>
+                   <tr>
+                     <td>
+                       Slower and less secured
+                     </td>
+                     <td>
+                       Faster and more secured
+                     </td>
+                   </tr>
+                   <tr>
+                     <td>
+                      It results in performance loss whenever the users increase rapidly.
+                     </td>
+                     <td>
+                      It results in performance loss whenever the system is run on Internet but gives more performance than two-tier architecture.
+                     </td>
+                   </tr>
+                   <tr>
+                     <td>
+                      Example – Contact Management System created using MS-Access or Railway Reservation System, etc.
+                     </td>
+                     <td>
+                      Example – Designing registration form which contains text box, label, button or a large website on the Internet, etc.
+                     </td>
+                   </tr>
+                 </table>
+                 <h3>Database Languages</h3>
+                 <img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20190826175059/Types-of-SQL-Commands.jpg"/>
+                 <ol>
+                   <li><b>DDL</b>
+                  <p> Data Definition Language actually consists of the SQL commands that can be used to define the database schema. It simply deals with descriptions of the database schema and is used to create and modify the structure of database objects in the database. </p></li>
+                  <li><b>DCL</b>
+                    <p>DCL includes commands such as GRANT and REVOKE which mainly deal with the rights, permissions and other controls of the database system. </p></li>
+                    <li><b>DQL</b>
+                      <p>Used for performing queries on the data within schema objects. The purpose of the DQL Command is to get some schema relation based on the query passed to it. </p></li>
+                      <li><b>DML</b>
+                        <p>The SQL commands that deals with the manipulation of data present in the database belong to DML or Data Manipulation Language and this includes most of the SQL statements. </p></li>
+                        <li><b>TCL</b>
+                          <p>TCL commands deal with the transaction within the database.It includes commit, rollback,savepoint,set transaction </p></li>
+                 </ol>
+                 <h3>Instance</h3>
+                 <p></p>
+                 <h3>Schema</h3>
+                 <h3>SubSchema</h3>
+              </article>
+            </section>
+          </main>
+        </body>
+    </html>
