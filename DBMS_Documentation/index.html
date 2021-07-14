@@ -13,8 +13,8 @@
             <ul>
               <li><a class="nav-link" href="#overview">Overview</a></li>
               <li>
-                <a class="nav-link" href="#processconcept"
-                  >Process Concept</a
+                <a class="nav-link" href="#sql"
+                  >SQL</a
                 >
               </li>
               <li>
@@ -180,9 +180,615 @@
                           <p>TCL commands deal with the transaction within the database.It includes commit, rollback,savepoint,set transaction </p></li>
                  </ol>
                  <h3>Instance</h3>
-                 <p></p>
+                 <p>In simple words, it is the snapshot of the database taken at a particular moment. It can also be described in more significant way as the collection of the information stored in the database at that particular moment.</p>
+                  <p>For eg : An organization with an employees database will have three different instances such as production that is used to monitor the data right at that moment, per-production that is used to test new functionality prior to release of production and the development that is used by database developers to create new functionality. </p>
                  <h3>Schema</h3>
+                 <p>It is the overall description or the overall design of the database specified during the database design. Important thing to be remembered here is it should not be changed frequently. Basically, it displays the record types(entity),names of data items(attribute) but not the relation among the files</p>
+                 <p>It is of two types:
+                   <ol>
+                     <li>Logical Schema
+                       <p>It  is concerned with the data structure with exploring data structure offered to DBMS so that schema is very easy for the computer to understand.</p>
+                     </li>
+                     <li>Physical Schema
+                       <p>the physical schema is concerned with the way or the manner in which conceptual database gets represented in the computer as it is stored in the database.Physical schema is hidden behind the logical schema and thus can be be modified without affecting the application programs</p>
+                     </li>
+                   </ol>
+                 </p>
                  <h3>SubSchema</h3>
+                 <p>It can be defined as the subset or sub-level of schema that has the same properties as the schema. In simple words it is just a effective plan or the schema for the view. Well, it is interesting to note that it provides the users a window through which the user can view only that part of database which is of matter of interest to him. It Identifies subset of areas, sets, records, data names defined in database that is of interest to him. Thus a portion of database can be seen by application programs and different application programs has different view of data.</p>
+                 <h3>How DBMS Can be implemented??</h3>
+                 <ol>
+                   <li>
+                     Identify all the elements that need to be included in dbms.
+                   </li>
+                   <li>
+                     Set perimeters for access to data.
+                   </li>
+                   <li>
+                     test drive the new dbms.
+                   </li>
+                   <li>
+                     Educate all users.
+                   </li>
+                   <li>
+                     Evaluate the system after it has been up and running.
+                   </li>
+                 </ol>
+                 <h3>Data Abstraction</h3>
+                 <p>Data Abstraction refers to the process of hiding irrelevant details from the user.Example: If we want to access any mail from our Gmail then we don't know where that data is physically stored i.e is the data present in India or USA or what data model has been used to store that data? We are not concerned about these things. We are only concerned with our email. So, information like these i.e. location of data and data models are irrelevant to us and in data abstraction, we do this only. Apart from the location of data and data models, there are other factors that we don't care of. We hide the unnecessary data from the user and this process of hiding unwanted data is called Data Abstraction</p>
+                 <h3>Three levels of data abstraction</h3>
+                 <em>.Why???</em>
+                 <p>To ensure data independence means user and data should not directly interact with each other.</p>
+                 <img src="https://s3.ap-south-1.amazonaws.com/afteracademy-server-uploads/what-is-data-abstraction-in-dbms-and-what-are-its-three-levels-data-abstraction-levels-771e879679d76dea.jpg"/>
+                 <ol>
+                   <li><b>View level OR External Schema</b>
+                  <p>This level tells the application about how the data should be shown to the user. Example: If we have a login-id and password in a university system, then as a student, we can view our marks, attendance, fee structure, etc. But the faculty of the university will have a different view.So, different users will have a different view according to the authorization they have.
+                  </p></li>
+                   <li><b>Conceptual level OR Logical Level</b>
+                  <p>This level tells how the data is actually stored and structured. We have different data models by which we can store the data.The structure of the tables are defined here in the conceptual level. Also, how the tables are related to each other are defined here.</p></li>
+                   <li><b>Physical level OR Internal Schema</b>
+                  <p>Physical level tells us that where the data is actually stored i.e. it tells the actual location of the data that is being stored by the user. The Database Administrators(DBA) decide that which data should be kept at which particular disk drive, how the data has to be fragmented, where it has to be stored etc. They decide if the data has to be centralized or distributed. </p></li>
+                 </ol>
+              </article>
+            </section>
+            <section class="main-section" id="sql">
+              <header>
+                SQL Commands
+              </header>
+              <article>
+                <h3>Databases</h3>
+                   <table>
+                     <tr>
+                       <th>Command</th>
+                       <th>Action</th>
+                     </tr>
+                     <tr>
+                       <td><code>show databases;</code></td>
+                       <td>It will list all avlbl databases in the mysql server.</td>
+                     </tr>
+                     <tr>
+                       <td>
+                         <code>CREATE DATABASE name_of_db;</code>
+                       </td>
+                       <td>To create a database in our server</td>
+                     </tr>
+                     <tr>
+                      <td>
+                        <code>DROP DATABASE name_of_db;</code>
+                      </td>
+                      <td>To delete a database in our server</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <code>USE name_of_db;</code>
+                      </td>
+                      <td>It tells mysql which database we want to work with.</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <code>SELECT database();</code>
+                      </td>
+                      <td>It tells which database we are currently using</td>
+                    </tr>
+                    </table>
+                    <h3>Tables</h3>
+                    <b>DataTypes</b>
+                    <ol>
+                      <li>
+                        Numeric Types
+                        <ul>
+                          <li>
+                             INT : whole number
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        String Types
+                        <ul>
+                          <li>
+                             varchar : a variable length string
+                             while using we have to specify maximum length
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        Date Types
+                        <ul>
+                          <li>
+                             DATE
+                          </li>
+                          <li>
+                            DATETIME
+                          </li>
+                          <li>
+                            TIMESTAMP
+                          </li>
+                        </ul>
+                      </li>
+                    </ol>
+                    <table>
+                      <tr>
+                        <th>Command</th>
+                        <th>Action</th>
+                      </tr>
+                    <tr>
+                      <td>
+                        <code>CREATE TABLE tablename
+                          (
+                            column_name data_type,
+                            column_name data_type
+                          );
+                        </code>
+                      </td>
+                      <td>To create a table</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <code>show tables;</code>
+                      </td>
+                      <td>It shows the tables in our database.</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <code>SHOW COLUMNS FROM tablename; 
+                                       OR
+                              DESC tablename;
+                        </code>
+                      </td>
+                      <td>It will show the colu name and their datatypes.</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <code>DROP TABLE tablename;</code>
+                      </td>
+                      <td>To delete table.</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <code>INSERT INTO tablename(column1,column2)
+                              VALUES ('val',val);
+                        </code>
+                      </td>
+                      <td>To insert data into table.</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <code>SELECT * FROM tablename;</code>
+                      </td>
+                      <td>To show <b>all</b> the data stored in table.</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <code>INSERT INTO tablename(column1,column2)
+                          VALUES ('val',val),
+                          ('val',val),
+                           ('val',val);</code>
+                      </td>
+                      <td>To bulk insert data.</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <code>CREATE TABLE tablename
+                          (
+                            column_name data_type NOT NULL,
+                            column_name data_type NOT NULL
+                          );</code>
+                      </td>
+                      <td>To make any entry required (mandatory)</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <code>CREATE TABLE tablename
+                          (
+                            column_name data_type DEFAULT 'value',
+                            column_name data_type DEFAULT value
+                          );</code>
+                      </td>
+                      <td>To set default values for any entry.</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <code>CREATE TABLE tablename
+                          (
+                            column_name1 data_type NOT NULL DEFAULT 'value',
+                            column_name2 data_type NOT NULL DEFAULT value
+                          );</code>
+                      </td>
+                      <td>Here we cannot even explicitly enter NULL value otherwise it will give error.</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <code>CREATE TABLE unique_cats(
+                                cat_id INT NOT NULL,
+                                name VARCHAR(100),
+                                age INT,
+                                <b>PRIMARY KEY (cat_id)</b>);
+                                       OR
+                                CREATE TABLE unique_cats(
+                                cat_id INT NOT NULL <b>PRIMARY KEY</b>,
+                                name VARCHAR(100),
+                                age INT,
+                               );
+                        </code>
+                      </td>
+                      <td>To assign any column as the primary key.(so here cat_id will become primary key i.e. to uniquely identify a record in a table)</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <code> CREATE TABLE unique_cats(
+                          cat_id INT NOT NULL <b>AUTO_INCREAMENT</b>,
+                          name VARCHAR(100),
+                          age INT,
+                         );</code>
+                      </td>
+                      <td>If any value is auto increamenting.</td>
+                    </tr>
+                   </table>
+                   <h3>CRUD</h3>
+                   <table>
+                     <tr>
+                       <th>Command</th>
+                       <th>Action</th>
+                     </tr>
+                   <tr>
+                     <td>
+                       <code></code>
+                     </td>
+                     <td></td>
+                   </tr>
+                   <tr>
+                     <td>
+                       <code></code>
+                     </td>
+                     <td></td>
+                   </tr>
+                   <tr>
+                     <td>
+                       <code></code>
+                     </td>
+                     <td></td>
+                   </tr>
+                   <tr>
+                     <td>
+                       <code></code>
+                     </td>
+                     <td></td>
+                   </tr>
+                   <tr>
+                     <td>
+                       <code></code>
+                     </td>
+                     <td></td>
+                   </tr>
+                   <tr>
+                     <td>
+                       <code></code>
+                     </td>
+                     <td></td>
+                   </tr>
+                   <tr>
+                     <td>
+                       <code></code>
+                     </td>
+                     <td></td>
+                   </tr>
+                   <tr>
+                     <td>
+                       <code></code>
+                     </td>
+                     <td></td>
+                   </tr>
+                   <tr>
+                     <td>
+                       <code></code>
+                     </td>
+                     <td></td>
+                   </tr>
+                   <tr>
+                     <td>
+                       <code></code>
+                     </td>
+                     <td></td>
+                   </tr>
+                   <tr>
+                     <td>
+                       <code></code>
+                     </td>
+                     <td></td>
+                   </tr>
+                  </table>
+                  <h3>Tables</h3>
+                  <table>
+                    <tr>
+                      <th>Command</th>
+                      <th>Action</th>
+                    </tr>
+                  <tr>
+                    <td>
+                      <code></code>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <code></code>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <code></code>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <code></code>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <code></code>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <code></code>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <code></code>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <code></code>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <code></code>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <code></code>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <code></code>
+                    </td>
+                    <td></td>
+                  </tr>
+                 </table>
+                 <h3>Tables</h3>
+                 <table>
+                   <tr>
+                     <th>Command</th>
+                     <th>Action</th>
+                   </tr>
+                 <tr>
+                   <td>
+                     <code></code>
+                   </td>
+                   <td></td>
+                 </tr>
+                 <tr>
+                   <td>
+                     <code></code>
+                   </td>
+                   <td></td>
+                 </tr>
+                 <tr>
+                   <td>
+                     <code></code>
+                   </td>
+                   <td></td>
+                 </tr>
+                 <tr>
+                   <td>
+                     <code></code>
+                   </td>
+                   <td></td>
+                 </tr>
+                 <tr>
+                   <td>
+                     <code></code>
+                   </td>
+                   <td></td>
+                 </tr>
+                 <tr>
+                   <td>
+                     <code></code>
+                   </td>
+                   <td></td>
+                 </tr>
+                 <tr>
+                   <td>
+                     <code></code>
+                   </td>
+                   <td></td>
+                 </tr>
+                 <tr>
+                   <td>
+                     <code></code>
+                   </td>
+                   <td></td>
+                 </tr>
+                 <tr>
+                   <td>
+                     <code></code>
+                   </td>
+                   <td></td>
+                 </tr>
+                 <tr>
+                   <td>
+                     <code></code>
+                   </td>
+                   <td></td>
+                 </tr>
+                 <tr>
+                   <td>
+                     <code></code>
+                   </td>
+                   <td></td>
+                 </tr>
+                </table>
+                <h3>Tables</h3>
+                <table>
+                  <tr>
+                    <th>Command</th>
+                    <th>Action</th>
+                  </tr>
+                <tr>
+                  <td>
+                    <code></code>
+                  </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>
+                    <code></code>
+                  </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>
+                    <code></code>
+                  </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>
+                    <code></code>
+                  </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>
+                    <code></code>
+                  </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>
+                    <code></code>
+                  </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>
+                    <code></code>
+                  </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>
+                    <code></code>
+                  </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>
+                    <code></code>
+                  </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>
+                    <code></code>
+                  </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>
+                    <code></code>
+                  </td>
+                  <td></td>
+                </tr>
+               </table>
+               <h3>Tables</h3>
+               <table>
+                 <tr>
+                   <th>Command</th>
+                   <th>Action</th>
+                 </tr>
+               <tr>
+                 <td>
+                   <code></code>
+                 </td>
+                 <td></td>
+               </tr>
+               <tr>
+                 <td>
+                   <code></code>
+                 </td>
+                 <td></td>
+               </tr>
+               <tr>
+                 <td>
+                   <code></code>
+                 </td>
+                 <td></td>
+               </tr>
+               <tr>
+                 <td>
+                   <code></code>
+                 </td>
+                 <td></td>
+               </tr>
+               <tr>
+                 <td>
+                   <code></code>
+                 </td>
+                 <td></td>
+               </tr>
+               <tr>
+                 <td>
+                   <code></code>
+                 </td>
+                 <td></td>
+               </tr>
+               <tr>
+                 <td>
+                   <code></code>
+                 </td>
+                 <td></td>
+               </tr>
+               <tr>
+                 <td>
+                   <code></code>
+                 </td>
+                 <td></td>
+               </tr>
+               <tr>
+                 <td>
+                   <code></code>
+                 </td>
+                 <td></td>
+               </tr>
+               <tr>
+                 <td>
+                   <code></code>
+                 </td>
+                 <td></td>
+               </tr>
+               <tr>
+                 <td>
+                   <code></code>
+                 </td>
+                 <td></td>
+               </tr>
+              </table>
               </article>
             </section>
           </main>
