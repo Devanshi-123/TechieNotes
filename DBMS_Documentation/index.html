@@ -280,6 +280,12 @@
                           <li>
                              INT : whole number
                           </li>
+                          <li>
+                            DECIMAL(fixed point) : Its a number that includes a decimal point for eg Books price <b>DECIMAL(maximum number of digits,digits after decimal point)</b>
+                          </li>
+                          <li>
+                            FLOAT (floating point) 7 digits precision, DOUBLE 
+                          </li>
                         </ul>
                       </li>
                       <li>
@@ -289,23 +295,118 @@
                              varchar : a variable length string
                              while using we have to specify maximum length
                           </li>
+                          <li>
+                            char : fixed length so if we specify 5 and pass 10 it will truncate and if pass les sthan 5 then it will add spaces.
+                            <em>Char is faster for fixed length text.</em>
+                          </li>
                         </ul>
                       </li>
                       <li>
                         Date Types
                         <ul>
                           <li>
-                             DATE
+                             DATE : Values with date but no time <b>YYYY-MM-DD </b>format.
                           </li>
                           <li>
-                            DATETIME
+                            TIME : values with a time but no date <b>HH:MM:SS</b>.
+                          </li>
+                          <li>
+                            DATETIME : VALUES with date and time <b>YYYY-MM-DD HH:MM:SS</b>
                           </li>
                           <li>
                             TIMESTAMP
                           </li>
+                          <li>
+                            CURDATE() - gives current date
+                          </li>
+                          <li>
+                            CURTIME() - gives current time
+                          </li>
+                          <li>
+                            NOW() - gives current datetime
+                          </li>
+                          <em>Formatting dates</em>
+                          <li>
+                            DAY() - extract day 
+                          </li>
+                          <li>
+                            DAYNAME() - extract name of day
+                          </li>
+                          <li>
+                            DAYOFWEEK() - extract the day of week i.e. saturday 7 sunday 1 etc
+                          </li>
+                          <li>
+                            DAYOFYEAR()
+                          </li>
+                          <li>
+                            MONTHNAME()
+                          </li>
+                          <li>
+                            HOUR() 
+                          </li>
+                          <li>
+                            MINUTE()
+                          </li>
                         </ul>
+                        <table>
+                          <tr>
+                            <td>
+                              SELECT DATE_FORMAT('2009-10-04 22:23:00','%W %M %Y');
+                            </td>
+                            <td>Sunday October 2009</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              SELECT DATE_FORMAT('2007-10-04 22:23:00','%H:%i:%s');
+                            </td>
+                            <td>
+                              22:23:00
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              SELECT DATE_FORMAT('2007-10-04 22:23:00','%m/%d/%y');
+                            </td>
+                            <td>
+                              04/10/2007
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              SELECT DATE_FORMAT('2007-10-04 22:23:00','%h:%m:%s');
+                            </td>
+                            <td>
+                              10:23
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              SELECT DATEDIFF(NOW(),date_of_birth) FROM persons;
+                            </td>
+                            <td>
+                              To display age of each person in number of days.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <b> DATE_ADD(date,INTERVAL expr unit)</b>
+                              SELECT DATE_ADD('2000-12-31 23:59:59',INTERVAL 1 second);
+                            </td>
+                            <td>
+                                 '2001-01-01 00:00:00'<em>instead of date_add we can even use + symbol</em>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>SELECT DAYNAME(NOW());</td>
+                          </tr>
+                          <tr>
+                            To print current day of week.
+                          </tr>
+                        </table>
+                        
                       </li>
                     </ol>
+                    <b>We can also uyse CAST to convert one datetype to another</b>
                     <table>
                       <tr>
                         <th>Command</th>
@@ -432,72 +533,50 @@
                      </tr>
                    <tr>
                      <td>
-                       <code></code>
+                       <code>SELECT col_name FROM table_name;</code>
                      </td>
-                     <td></td>
+                     <td>To get particular columns from table.</td>
                    </tr>
                    <tr>
                      <td>
-                       <code></code>
+                       <code>SELECT col_name FROM table_name <b>WHERE</b> condition </code>
                      </td>
-                     <td></td>
+                     <td>To return,modify etc records having a specific condition</td>
                    </tr>
                    <tr>
                      <td>
-                       <code></code>
+                       <code>SELECT emp_id AS id FROM employees;</code>
                      </td>
-                     <td></td>
+                     <td>Aliases are used to display the result with changed label name however its name in table remains same.</td>
                    </tr>
                    <tr>
                      <td>
-                       <code></code>
+                       <code><b>UPDATE</b> employees <b>SET</b> last_name='agarwal' <b>WHERE</b> first_name='devanshi';</code>
                      </td>
-                     <td></td>
+                     <td>To update existing data in database</td>
                    </tr>
                    <tr>
                      <td>
-                       <code></code>
+                       <code><b>DELETE</b> FROM table_name <b>WHERE</b> condition</code>
                      </td>
-                     <td></td>
+                     <td>To delete any record</td>
                    </tr>
                    <tr>
                      <td>
-                       <code></code>
+                       <code><b>DELETE</b> FROM table_name</code>
                      </td>
-                     <td></td>
+                     <td>It just deletes the data from the table but the table still exist however in DROP it deletes whole table</td>
                    </tr>
                    <tr>
                      <td>
-                       <code></code>
+                       <code><b>source</b> file_name.sql</code>
                      </td>
-                     <td></td>
-                   </tr>
-                   <tr>
-                     <td>
-                       <code></code>
-                     </td>
-                     <td></td>
-                   </tr>
-                   <tr>
-                     <td>
-                       <code></code>
-                     </td>
-                     <td></td>
-                   </tr>
-                   <tr>
-                     <td>
-                       <code></code>
-                     </td>
-                     <td></td>
-                   </tr>
-                   <tr>
-                     <td>
-                       <code></code>
-                     </td>
-                     <td></td>
+                     <td>To run sql files</td>
                    </tr>
                   </table>
-                  <h3>Tables</h3>
+                  <p>In context of this database.</p>
+                  <img src="./books.PNG"/>
+                  <h3>String Functions</h3>
                   <table>
                     <tr>
                       <th>Command</th>
@@ -505,72 +584,62 @@
                     </tr>
                   <tr>
                     <td>
-                      <code></code>
+                      <code>SELECT <b>CONCAT(author_fname,' ',author_lname)</b> AS fullname FROM books;</code>
                     </td>
-                    <td></td>
+                    <td>Used to combine strings for eg combining first and last name</td>
                   </tr>
                   <tr>
                     <td>
-                      <code></code>
+                      <code>SELECT <b>CONCAT_WS('-',title,author_fname,author_lname)</b>FROM books;</code>
                     </td>
-                    <td></td>
+                    <td>To combine multiple fields separated by separator</td>
                   </tr>
                   <tr>
                     <td>
-                      <code></code>
+                      <code>SELECT SUBSTRING(string,startindx,endindx);</code>
                     </td>
-                    <td></td>
+                    <td>It allows us to select particular portions of a string.//In string indexing start from 1.
+                      If only one index is given treat it as start index, if negative index is given treat it as start and move from end to start
+                    </td>
                   </tr>
                   <tr>
                     <td>
-                      <code></code>
+                      <code>SELECT SUBSTRING(title,1,10) FROM books;</code>
                     </td>
-                    <td></td>
+                    <td>To get starting 10 characters from title.</td>
                   </tr>
                   <tr>
                     <td>
-                      <code></code>
+                      <code>SELECT <b>REPLACE(string,trying to replace,string with which to replace)</b>;</code>
                     </td>
-                    <td></td>
+                    <td>To replace part of string with something else<em>It is case sensitive</em></td>
                   </tr>
                   <tr>
                     <td>
-                      <code></code>
+                      <code>SELECT <b>REVERSE(string)</b>;</code>
                     </td>
-                    <td></td>
+                    <td>It is used to reverse a string with same casing and spaces.</td>
                   </tr>
                   <tr>
                     <td>
-                      <code></code>
+                      <code>SELECT <b>CHAR_LENGTH(title)</b> AS title_length FROM books;</code>
                     </td>
-                    <td></td>
+                    <td>It tells how many characters are there in given string</td>
                   </tr>
                   <tr>
                     <td>
-                      <code></code>
+                      <code>SELECT <b>UPPER(string)</b>;</code>
                     </td>
-                    <td></td>
+                    <td>Change string to upper case</td>
                   </tr>
                   <tr>
                     <td>
-                      <code></code>
+                      <code>SELECT <b>LOWER(string)</b>;</code>
                     </td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <code></code>
-                    </td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <code></code>
-                    </td>
-                    <td></td>
+                    <td>Change string to lower case</td>
                   </tr>
                  </table>
-                 <h3>Tables</h3>
+                 <h3>Refining Selections</h3>
                  <table>
                    <tr>
                      <th>Command</th>
@@ -578,72 +647,61 @@
                    </tr>
                  <tr>
                    <td>
-                     <code></code>
+                     <code>SELECT <b>DISTINCT</b>  author_lname FROM books;</code>
                    </td>
-                   <td></td>
+                   <td>To get authors with diff last name</td>
                  </tr>
                  <tr>
                    <td>
-                     <code></code>
+                     <code>SELECT author_lname FROM books <b>ORDER BY</b> author_lname;</code>
                    </td>
-                   <td></td>
+                   <td>Sorting our results(to sort by author last name alphabetically)<em>Ascending by default</em></td>
                  </tr>
                  <tr>
                    <td>
-                     <code></code>
+                    <code>SELECT author_lname FROM books <b>ORDER BY</b> author_lname DESC;</code>
                    </td>
-                   <td></td>
+                   <td>To sort in descending</td>
                  </tr>
                  <tr>
                    <td>
-                     <code></code>
+                     <code>SELECT * FROM books ORDER BY released_year DESC <b>LIMIT 5</b>;</code>
                    </td>
-                   <td></td>
+                   <td>it allows us to select number i.e. how many results we wish to display.(For eg to get the five most recently released books)</td>
                  </tr>
                  <tr>
-                   <td>
-                     <code></code>
-                   </td>
-                   <td></td>
-                 </tr>
+                  <td>
+                    <code>SELECT * FROM books ORDER BY released_year DESC <b>LIMIT 5,886562813153287</b>;</code>
+                  </td>
+                  <td>It will display every result from 5th to last.</td>
+                </tr>
                  <tr>
                    <td>
-                     <code></code>
+                     <code>SELECT title FROM books <b>WHERE author_fname LIKE 'da%'</b>;</code>
                    </td>
-                   <td></td>
+                   <td>It is not case sensitive To get authors whose first name starts with da<em>% --> wildcard it means anything (da anything)</em></td>
                  </tr>
                  <tr>
-                   <td>
-                     <code></code>
-                   </td>
-                   <td></td>
-                 </tr>
-                 <tr>
-                   <td>
-                     <code></code>
-                   </td>
-                   <td></td>
-                 </tr>
-                 <tr>
-                   <td>
-                     <code></code>
-                   </td>
-                   <td></td>
-                 </tr>
-                 <tr>
-                   <td>
-                     <code></code>
-                   </td>
-                   <td></td>
-                 </tr>
-                 <tr>
-                   <td>
-                     <code></code>
-                   </td>
-                   <td></td>
-                 </tr>
+                  <td>
+                    <code>SELECT title FROM books <b>WHERE stock_quantity LIKE '____'</b>;</code>
+                  </td>
+                  <td>To get books whose stock quantity is 4 digits long<em>_ --> wildcard where one _ means exactly 4 characters</em></td>
+                </tr>
+                <tr>
+                  <td>
+                    <code> SELECT title,pages FROM books ORDER BY 2 DESC LIMIT 1;</code>
+                  </td>
+                  <td>To get the longest book i.e. with max pages</td>
+                </tr>
+                <tr>
+                  <td>
+                    <code> SELECT CONCAT(title,'-',released_year) AS summary FROM books ORDER BY released_year DE
+                      SC LIMIT 3;</code>
+                  </td>
+                  <td>Print summary containing title and year for 3 most recent books</td>
+                </tr>
                 </table>
-                <h3>Tables</h3>
+                <h3>Aggregate Functions</h3>
                 <table>
                   <tr>
                     <th>Command</th>
@@ -651,72 +709,66 @@
                   </tr>
                 <tr>
                   <td>
-                    <code></code>
+                    <code>SELECT <b>COUNT(*)</b> FROM books;</code>
                   </td>
-                  <td></td>
+                  <td>To count how many books are there in database?</td>
                 </tr>
                 <tr>
                   <td>
-                    <code></code>
+                    <code>SELECT <b>COUNT(DISTINCT author_fname)</b> FROM books;</code>
                   </td>
-                  <td></td>
+                  <td>How many books with distinct author first names</td>
                 </tr>
                 <tr>
                   <td>
-                    <code></code>
+                    <code>SELECT author_lname,COUNT(*) from books <b>GROUP BY</b> author_fname,author_lname;</code>
                   </td>
-                  <td></td>
+                  <td>GROUP BY summarizes or aggregrates identical data into single row. For eg to count number of books written by each author.</td>
                 </tr>
                 <tr>
                   <td>
-                    <code></code>
+                    <code>SELECT <b>MIN(released_year)</b> FROM books;</code>
                   </td>
-                  <td></td>
+                  <td>To get the oldest year in which book released</td>
                 </tr>
                 <tr>
                   <td>
-                    <code></code>
+                    <code>SELECT title,pages FROM books WHERE pages=<b>MAX(pages)</b> ;</code>
                   </td>
-                  <td></td>
+                  <td>To get the title of book with maximum number of pages.</td>
                 </tr>
                 <tr>
                   <td>
-                    <code></code>
+                    <code>SELECT author_fname,author_lname,<b>Min(released_year)</b> FROM books <b>GROUP BY</b> author_fname,author_lname;</code>
                   </td>
-                  <td></td>
+                  <td>To get year each author published their first book.</td>
                 </tr>
                 <tr>
                   <td>
-                    <code></code>
+                    <code>SELECT <b>SUM(pages)</b> FROM books;</code>
                   </td>
-                  <td></td>
+                  <td>To get sum of all the pages in entire database.</td>
                 </tr>
                 <tr>
                   <td>
-                    <code></code>
+                    <code>SELECT author_fname,author_lname,<b>SUM(pages)</b> FROM books <b>GROUP BY</b> author_fname,author_lname;</code>
                   </td>
-                  <td></td>
+                  <td>Sum all pages each author has written.</td>
                 </tr>
                 <tr>
                   <td>
-                    <code></code>
+                    <code>SELECT AVG(released_year) FROM books;</code>
                   </td>
-                  <td></td>
+                  <td>Average released year across all books.</td>
                 </tr>
                 <tr>
                   <td>
-                    <code></code>
+                    <code>SELECT released_year,AVG(stock_quantity) FROM books GROUP BY released_year; </code>
                   </td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>
-                    <code></code>
-                  </td>
-                  <td></td>
+                  <td>Calculate average stock quantity of books released in the same year.</td>
                 </tr>
                </table>
-               <h3>Tables</h3>
+               <h3>Logical Operator</h3>
                <table>
                  <tr>
                    <th>Command</th>
@@ -724,71 +776,146 @@
                  </tr>
                <tr>
                  <td>
-                   <code></code>
+                   <code> SELECT title FROM books WHERE released_year <b>!=</b> 2017;</code>
                  </td>
-                 <td></td>
+                 <td>Select books that were not released in 2017</td>
                </tr>
                <tr>
                  <td>
-                   <code></code>
+                   <code>SELECT title FROM books WHERE title <b>NOT LIKE</b> 'W%';</code>
                  </td>
-                 <td></td>
+                 <td>Select books that dont start with W.</td>
                </tr>
                <tr>
                  <td>
-                   <code></code>
+                   <code>SELECT title FROM books WHERE released_year <b>></b> 2000;</code>
                  </td>
-                 <td></td>
+                 <td>Select books released after 2000 <em>In mysql A=a</em></td>
                </tr>
                <tr>
                  <td>
-                   <code></code>
+                   <code>SELECT title,CONCAT(author_fname," ",author_lname),released_year FROM books WHERE author_fnam
+                    e = 'Dave' && author_lname = 'Eggers' && released_year > 2010;</code>
                  </td>
-                 <td></td>
+                 <td>Select books written by Dave Eggers published after year 2010</td>
                </tr>
                <tr>
                  <td>
-                   <code></code>
+                   <code>SELECT title,released_year FROM books WHERE released_year BETWEEN 2004 AND 2015;</code>
                  </td>
-                 <td></td>
+                 <td>Select books released between 2004 and 2015<em>we have not between also</em></td>
                </tr>
                <tr>
                  <td>
-                   <code></code>
+                   <code>SELECT title,CONCAT(author_fname," ",author_lname) AS author_name FROM books WHERE author_lna
+                    me <b>IN</b> ('Carver','Lahiri','Smith');</code>
                  </td>
-                 <td></td>
+                 <td>Select books written by Carver or Lahiri or Smith</td>
                </tr>
                <tr>
                  <td>
-                   <code></code>
+                   <code>SELECT title,released_year,<b>CASE WHEN released_year >= 2000 THEN 'Modern Lit' ELSE '20th Centu
+                    ry Lit' END AS GENRE</b> FROM books;</code>
                  </td>
-                 <td></td>
-               </tr>
-               <tr>
-                 <td>
-                   <code></code>
-                 </td>
-                 <td></td>
-               </tr>
-               <tr>
-                 <td>
-                   <code></code>
-                 </td>
-                 <td></td>
-               </tr>
-               <tr>
-                 <td>
-                   <code></code>
-                 </td>
-                 <td></td>
-               </tr>
-               <tr>
-                 <td>
-                   <code></code>
-                 </td>
-                 <td></td>
+                 <td>Create column genre based on released year if year > 2000 modern if less than 2000 than 20th century lit </td>
                </tr>
               </table>
+              <h3>Relationships And Joins</h3>
+              <em>Types of relationships</em>
+              <ol>
+                <li>
+                  One To One 
+                  <p>For eg between customer name and customer details.</p>
+                </li>
+                <li>
+                  One to Many
+                  <p>For eg between book and reviews table</p>
+                  Customer and Orders 
+                  So we use foreign keys <em>they are references to another table within a given table.</em>There must be a record for each foreign key
+                </li>
+                <li>
+                  Many To Many
+                  <p>For eg books and authors as a book can have many authors and an author can have many books.</p>
+                </li>
+              </ol>
+              <table>
+                <tr>
+                  <th>Command</th>
+                  <th>Action</th>
+                </tr>
+              <tr>
+                <td>
+                  <code>CREATE TABLE orders(id INT AUTO_INCREMENT PRIMARY KEY,
+                    order_date DATE,
+                    amount DECIMAL(8,2),
+                    customer_id INT,
+                    <b>  FOREIGN KEY(customer_id) REFERENCES customers(id)</b>);</code>
+                </td>
+                <td>customer_id column in orders table acts as a foreign key for id column in customer table</td>
+              </tr>
+              <tr>
+                <td>
+                  <code>INNER JOIN <em>SELECT * FROM customers<b>JOIN orders ON customers.id=orders.customer_id;</b></em></code>
+                </td>
+                <td>Select all records from A and B where join condition is met.</td>
+              </tr>
+              <tr>
+                <td>
+                  <code>SELECT first_name,last_name,order_date,SUM(amount) FROM customers JOIN orders ON customer.id = orders.customer_id GROUP BY customer_id ORDER BY DESC LIMIT 1; </code>
+                </td>
+                <td>To find the customer who have spent the largest amount </td>
+              </tr>
+              <tr>
+                <td>
+                  <code></code>
+                </td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>
+                  <code></code>
+                </td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>
+                  <code></code>
+                </td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>
+                  <code></code>
+                </td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>
+                  <code></code>
+                </td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>
+                  <code></code>
+                </td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>
+                  <code></code>
+                </td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>
+                  <code></code>
+                </td>
+                <td></td>
+              </tr>
+             </table>
+             <h3>Instagram Database</h3>
+                 
               </article>
             </section>
           </main>
