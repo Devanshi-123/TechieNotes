@@ -12,21 +12,15 @@
             <header id="title">O.O.P.S</header>
             <ul>
               <li><a class="nav-link" href="#overview">Overview</a></li>
+              <li><a class="nav-link" href="#class">Class</a></li>
+              <li><a class="nav-link" href="#impkeywords">Important Keywords</a></li>
               <li>
-                <a class="nav-link" href="#processconcept"
-                  >Process Concept</a
-                >
+                <a class="nav-link" href="#polymorphism">Polymorphism</a>
               </li>
-              <li>
-                <a class="nav-link" href="#processscheduling">Process Scheduling</a>
-              </li>
-              <li><a class="nav-link" href="#threadconcept">Thread Concept</a></li>
-              <li><a class="nav-link" href="#synchronisation">Synchronisation</a></li>
-              <li>
-                <a class="nav-link" href="#deadlock">Deadlock</a>
-              </li>
-              <li><a class="nav-link" href="#memorymaanagementstrategy">Memory Management Strategy</a></li>
-              <li><a class="nav-link" href="#virtualmemorymanagement">Virtual Memory Management</a></li>
+              <li><a class="nav-link" href="#inheritance">Inheritance</a></li>
+              <li><a class="nav-link" href="#encapsulation">Encapsulation</a></li>
+              <li><a class="nav-link" href="#abstraction">Abstraction</a></li>
+              <li><a class="nav-link" href="#misc">Miscellaneous</a></li>
             </ul>
           </nav>
           <main id="main-doc">
@@ -34,9 +28,225 @@
               <header>Overview</header>
               <article>
                <h3>What is Object oriented programming?</h3>
-               <p></p>
+               <p>Object oriented programming is about creating objects that can store both data and functions.</p>
+               <h3>How is object oriented programming related to real world?</h3>
+               For eg a 
+                 <ul>
+                   <li>
+                    phone in OOP is an object.
+                   </li>
+                   <li>
+                    Objects logic are done by classes for example ,by phone we can call,Bluetooth ,take photo etc. those every logic
+                    will be divide as classes.
+                   </li>
+                   <li>
+                     Abstraction : We send data from Bluetooth we really do not know how it connect with other phone or devices.
+                   </li>
+                   <li>
+                    In real time we are using Encapsulation for security purpose.For eg : When we turn on the Bluetooth we can assess to connect to other phone but not access to call or send sms from that
+                    phone that level is hidden from encapsulation(some of abstraction is available).
+                   </li>
+                   <li>
+                     Polymorphism : Same func diff arg . For eg : We can send normal text massage and we can send video massage also.
+                     In here we need to change the mode.
+                   </li>
+                 </ul>
+                 <h3>Why to study oops?</h3>
+                 <p>So, above statement proves, OOPs is provides code reusability which reduce the duplication of code because once you have duplicate code, you have make changes everywhere which leads to performance. Code can be changed anytime or requirement of application changed anytime so when you want to make changes in your application, OOPs makes it easier.</p>
+                 <b>Advantages</b>
+                 <ol>
+                   <li>Improved software development productivity due to code reusability</li>
+                   <li>Improved software maintainaibility as design is modular</li>
+                   <li>Faster development</li>
+                   <li>Lower cost of development</li>
+                   <li>Higher quality software</li>
+                 </ol>
+                 <h3>Limitation of OOPS</h3>
+                 <ol>
+                   <li>Steep learnhing curve as thought process for implementing oops may not be natural it may take time to learn inheritance,polymorphism.</li>
+                   <li>Larger program size</li>
+                   <li>Slower programs</li>
+                   <li>Not suital for all types of problems.</li>
+                 </ol>
+                 <h3>What makes a language object oriented?</h3>
+                 <p>Object-Orientation is all about objects that collaborate by sending messages. That is, to me, the single most important trait of an object-oriented language.
+
+                  If I had to put up an ordered list of all the features that an object-oriented language must have, it would look like this:</p>
+                <ol>
+                  <li>Objects sending messages to each other.</li>
+                  <li>Everything is an object</li>
+                  <li>Late Binding</li>
+                  <li>Subtype polymorphism</li>
+                  <li>Inheritance</li>
+                  <li>Encapsulation</li>
+                  <li>Abstraction</li>
+                </ol>
+                Obviously, this list is very controversial, since it excludes a great variety of languages that are widely regarded as object-oriented, such as Java, C# and C++, all of which violate points 1, 2 and 3. However, there is no doubt that those languages allow for object-oriented programming (but so does C) and even facilitate it (which C doesn't). So, I have come to call languages that satisfy those requirements "purely object-oriented".
+                <br/>
+
+As archetypical object-oriented languages I would name Self and Newspeak.<br/>
+
+Both satisfy the above-mentioned requirements. Both are inspired by and successors to Smalltalk, and both actually manage to be "more OO" in some sense. The things that I like about Self and Newspeak are that both take the message sending paradigm to the extreme (Newspeak even more so than Self).<br/>
+
+In Newspeak, everything is a message send. There are no instance variables, no fields, no attributes, no constants, no class names. They are all emulated by using getters and setters.
+
+In Self, there are no classes, only objects. This emphasizes, what OO is really about: objects, not classes.
+
+
              </article>
            </section>
+           <section class="main-section" id="overview">
+            <header>Class</header>
+            <article>
+             <h3>What is Class?</h3>
+             <img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/Classes-and-Objects-in-C.png"/>
+             <p>Class are a blueprint or a set of instructions to build a specific type of object. It is a basic concept of Object-Oriented Programming which revolve around the real-life entities. Class in Java determines how an object will behave and what the object will contain</p>
+             <b>Syntax</b>
+             <code>class <class_name>{  
+              field;  
+              method;  
+            } </code>
+             <h3>Structure VS Class</h3>
+             <table>
+               <tr>
+                 <th>Structure</th>
+                 <th>Class</th>
+               </tr>
+               <tr>
+                 <td>
+                  A Structure is not secure and cannot hide its implementation details from the end-user
+                 </td>
+                 <td>
+                  a class is secure and can hide its programming and designing details
+                 </td>
+               </tr>
+               <tr>
+                 <td>
+                  Members of a structure are public by default. 
+                  So below program will execute
+                  <code>
+                     
+// Program 2
+#include stdio.h
+ 
+struct Test {
+    int x; // x is public
+};
+int main()
+{
+  Test t;
+  t.x = 20; // works fine because x is public
+  getchar();
+  return 0;
+}
+                  </code>
+                 </td>
+                 <td>
+                  Members of a class are private by default 
+                  So below will give error
+                  <code>
+                    #include stdio.h
+ 
+                    class Test {
+                        int x; // x is private
+                    };
+                    int main()
+                    {
+                      Test t;
+                      t.x = 20; // compiler error because x is private
+                      getchar();
+                      return 0;
+                    }</code>
+                 </td>
+               </tr>
+               <tr>
+                 <td>
+                  When deriving a struct from a class/struct, the default access-specifier for a base class/struct is public.
+                  So below program works
+                  <code>
+                    #include stdio.h
+ 
+                      class Base {
+                      public:
+                          int x;
+                      };
+                       
+                      struct Derived : Base { }; // is equivalent to struct Derived : public Base {}
+                       
+                      int main()
+                      {
+                        Derived d;
+                        d.x = 20; // works fine because inheritance is public
+                        getchar();
+                        return 0;
+                      }
+                  </code>
+                 </td>
+                 <td>
+                  when deriving a class, the default access specifier is private. 
+                  Below code will give error as inheritance is private
+                  <code>
+                    #include stdio.h
+ 
+                      class Base {
+                      public:
+                          int x;
+                      };
+                       
+                      class Derived : Base { }; // is equivalent to class Derived : private Base {}
+                       
+                      int main()
+                      {
+                        Derived d;
+                        d.x = 20; // compiler error because inheritance is private
+                        getchar();
+                        return 0;
+                      }
+                  </code>
+                 </td>
+               </tr>
+               <tr>
+                 <td> Class can have null values</td>
+                 <td> structure can not have null values.</td>
+               </tr>
+               <tr>
+                 <td>Memory of structure is allocated in the stack</td>
+                 <td> memory of class is allocated in heap.</td>
+               </tr>
+               <tr>
+                 <td>
+                  structure can not require constructor or desctructor.
+                 </td>
+                 <td>
+                  Class requires constructor and destructor 
+                 </td>
+               </tr>
+               <tr>
+                 <td>structure cannot be inherited.</td>
+                 <td>Classes support polymorphism and also be inherited</td>
+               </tr>
+             </table>
+             <h3>Similarity between structure and class</h3>
+             <p>Structures and classes are the two most important data structures that are used by programmers to build modular programs by using OOP languages, such as Visual Basic .NET, and Visual C#. The following are some of the similarities between a class and a structure:</p>
+             <ol>
+               <li>
+                Access specifiers, such as public, private, and protected, are identically used in structures and classes to restrict the access of their data and methods outside their body.
+               </li>
+               <li>The access level for class members and struct members, including nested classes and structs, is private by default. Private nested types are not accessible from outside the containing type.</li>
+               <li>Both structures and classes can implement interfaces to use multiple-inheritance in code.</li>
+               <li>Both structures and classes can have constructors with parameter.</li>
+               <li>Both structures and classes can have delegates and events.</li>
+             </ol>
+             <h3>When to use structure over class?</h3>
+             <p>Use a class unless your type meets all of the below criteria.</p>
+             <ol>
+               <li>It logically represents a single value, similar to primitive types (integer, double, and so on).</li>
+               <li>It has an instance size smaller than 16 bytes.</li>
+               <li>It is immutable.</li>
+               <li>It will not have to be boxed frequently.</li>
+             </ol>
+           </article>
+         </section>
             </main>
     </body>
 </html>
