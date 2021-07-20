@@ -396,6 +396,165 @@ B+ tree eliminates the above drawback by storing data pointers only at the leaf 
                               </li>
                             </ol>
                           </li>
+                          <li>
+                            <h3>
+                              Minimum difference subset
+                            </h3>
+                            <em>Given an integer array A containing N integers.
+
+                              You need to divide the array A into two subsets S1 and S2 such that the absolute difference between their sums is minimum.
+                              
+                              Find and return this minimum possible absolute difference.</em>
+                            <p>First using subset sum initialize table then for the last row of table and upto half its column for all the sum whose subset exist put their sum in eqn range-2*s1 and find minimum out of it</p>
+                            <code>
+                              int Solution::solve(vector int> &A) {
+                                int n = A.size();
+                                int totalsum = 0;
+                                for(int i=0;i less than n;i++)
+                                totalsum += A[i];
+                                
+                                 int dp[n+1][totalsum];
+                                 
+                                 for(int i=0;i less than totalsum+1;i++)
+                                 dp[0][i] = 0;
+                                 
+                                 for(int i=0;i less than n+1;i++)
+                                 dp[i][0] = 1;
+                                 
+                                 for(int i=1;i less than n+1;i++)
+                                 for(int j=0;j less than totalsum+1;j++)
+                                 {
+                                     if(A[i-1] less than =j)
+                                     dp[i][j] = dp[i-1][j-A[i-1]] | dp[i-1][j];
+                                     else
+                                     dp[i][j] = dp[i-1][j];
+                                 }
+                                 
+                                 int ans = INT_MAX;
+                                 vector less than int>B;
+                                 for(int i=0;i less than =totalsum/2;i++)
+                                 {
+                                     if(dp[n][i] == 1)
+                                     ans = min(ans ,(totalsum - i*2));
+                                 }
+                                 return ans;
+                            }
+                            
+                            </code>
+                          </li>
+                          <li>
+                            <h3>
+                              Count number of subsets with given difference
+                            </h3>
+                            <em>Given an integer array A containing N integers.
+
+                              You need to divide the array A into two subsets S1 and S2 such that the absolute difference between their sums is equal to given difference.
+                              
+                              Find and return number of such partitions possible</em>
+                            <p>since s1-s2=diff and s1+s2=sum then adding both eqn val = (diff+sum)/2 so we will count number of subsets having sum val.</p>
+                            <code>
+                              int findTargetSumWays(vector<int>& nums, int target) {
+                                int n = nums.size();int sum=0;
+                                //count number of 0's
+                                int c=0;
+                                for(int i=0;i less than n;i++)
+                                {
+                                    sum+= nums[i];
+                                    if(nums[i]==0)
+                                    {
+                                        c++;
+                                    }
+                                }
+                                if(sum  less than  target || ((sum+target)%2)!=0)
+                                {
+                                    return 0;
+                                }
+                                int val = (target+sum)/2;
+                                int t[n+1][val+1];
+                                for(int i=0;i less than n+1;i++)
+                                {
+                                    for(int j=0;j less than val+1;j++)
+                                    {
+                                        if(j==0)
+                                        {
+                                            t[i][j] = 1;
+                                        }
+                                        if(j!=0 && i==0)
+                                        {
+                                            t[i][j]=0;
+                                        }
+                                    }
+                                }
+                                for(int i=1;i less than n+1;i++)
+                                {
+                                    for(int j=1;j less than val+1;j++)
+                                    {
+                                        if(nums[i-1]==0)
+                                        {
+                                            t[i][j] = t[i-1][j];
+                                        }
+                                        else if(nums[i-1] less than =j)
+                                        {
+                                           t[i][j] = t[i-1][j-nums[i-1]] + t[i-1][j];   
+                                        }
+                                        else{
+                                            t[i][j] = t[i-1][j];
+                                        }
+                                    }
+                                }
+                                return pow(2,c)*t[n][val];
+                            }
+                             </code>
+                          </li>
+                          <li>
+                            <h3>
+                            Target sum
+                            </h3>
+                            <em>You are given an integer array nums and an integer target.
+
+                              You want to build an expression out of nums by adding one of the symbols '+' and '-' before each integer in nums and then concatenate all the integers.
+                              
+                              For example, if nums = [2, 1], you can add a '+' before 2 and a '-' before 1 and concatenate them to build the expression "+2-1".
+                              Return the number of different expressions that you can build, which evaluates to target.</em>
+                            <p>Same as previous question i.e number of partitions with given diff</p>
+                          </li>
+                        </ol>
+                      </li>
+                        </ul>
+                        <ul>
+                          <h2>Unbounded Knapsack</h2>
+                          <em>Here an item can be processed multiple times , so if an item is not included then its processed i.e. we will not check again to include it or not but if it is included then we can again check to include it again in our knapsack</em>
+                          <code>
+                            int unbounded_knapsack(int wt[],int val[],int W,int n)
+                            {
+                              int t[n+1][W+1];
+                              for(int i=0;i less than n+1;i++)
+                              {
+                                for(int j=0;j less than W+1;j++)
+                                {
+                                  if(j==0||i==0)
+                                  {
+                                    t[i][j]=0;
+                                  }
+                                }
+                              }
+                              for(int i=1;i less than n+1;i++)
+                              {
+                                for(int j=1;j less than W+1;j++)
+                                {
+                                  if(wt[i-1] less than =j)
+                                  {
+                                    //if an item is included it will not be processed
+                                    t[i][j] = max(t[i-1][j],val[i-1]+<b>t[i]</b>[j-wt[i-1]])
+                                  }
+                                  else{
+                                    t[i][j] = t[i-1][j];
+                                  }
+                                }
+                              }
+                              return t[n][W];
+                            }
+                          </code>
                         </ul>
                       </article>
                       </section>
