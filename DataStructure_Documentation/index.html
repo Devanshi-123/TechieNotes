@@ -208,6 +208,12 @@ B+ tree eliminates the above drawback by storing data pointers only at the leaf 
                   </td>
                 </tr>
               </table>
+              <h3>Time Complexities</h3>
+                <img src="./chart.PNG"/>
+                <img src="./ds.PNG"/>
+                <img src="./ds-sorting.PNG"/>
+                <img src="searching.PNG"/>
+                <img src="hg.PNG"/>
                 </article>
                 </section>
                   <section class="main-section" id="dp">
@@ -394,8 +400,6 @@ B+ tree eliminates the above drawback by storing data pointers only at the leaf 
 }
                                 </code>
                               </li>
-                            </ol>
-                          </li>
                           <li>
                             <h3>
                               Minimum difference subset
@@ -519,9 +523,7 @@ B+ tree eliminates the above drawback by storing data pointers only at the leaf 
                             <p>Same as previous question i.e number of partitions with given diff</p>
                           </li>
                         </ol>
-                      </li>
-                        </ul>
-                        <ul>
+                        <li>
                           <h2>Unbounded Knapsack</h2>
                           <em>Here an item can be processed multiple times , so if an item is not included then its processed i.e. we will not check again to include it or not but if it is included then we can again check to include it again in our knapsack</em>
                           <code>
@@ -555,7 +557,93 @@ B+ tree eliminates the above drawback by storing data pointers only at the leaf 
                               return t[n][W];
                             }
                           </code>
-                        </ul>
+                          <ol>
+                            <li>
+                              <h3>Rod Cutting Problem</h3>
+                              <em>Given a rod of length n inches and an array of prices that includes prices of all pieces of size smaller than n. Determine the maximum value obtainable by cutting up the rod and selling the pieces.</em>
+                              <img src="https://media.geeksforgeeks.org/wp-content/uploads/20201014084224/Untitleddrawing-300x225.png"/>
+                              <code>
+                                int rod_cutting(int length[],int price[],int max_length)
+                                {
+                                  int t[max_length+1][max_length+1];
+                                  for(int i=0;i less than max_length+1;i++)
+                                  {
+                                    for(int j=0;j less than max_length+1;j++)
+                                    {
+                                      if(j==0||i==0)
+                                      {
+                                        t[i][j]=0;
+                                      }
+                                    }
+                                  }
+                                  for(int i=1;i less than max_length+1;i++)
+                                  {
+                                    for(int j=1;j less than max_length+1;j++)
+                                    {
+                                      if(length[i-1] less than =j)
+                                      {
+                                        //if an item is included it will not be processed
+                                        t[i][j] = max(t[i-1][j],price[i-1]+<b>t[i]</b>[j-length[i-1]])
+                                      }
+                                      else{
+                                        t[i][j] = t[i-1][j];
+                                      }
+                                    }
+                                  }
+                                  return t[max_length][max_length];
+                                }
+                              </code>
+                            </li>
+                            <li>
+                              <h3>Coin Change Problem</h3>
+                              <em>You are given an integer array coins representing coins of different denominations and an integer amount representing a total amount of money.
+
+                                Return the number of combinations that make up that amount. If that amount of money cannot be made up by any combination of the coins, return 0.
+                                
+                                You may assume that you have an infinite number of each kind of coin.</em>
+                              <p>Unbounded knapsack(since unlimited supply of coins)+Count number of subset prblm(since count number of ways in which coins can cmbine to sum up to given amount)</p>
+                              <code>
+                                int change(int amount, vector int>& coins) {
+                                  int n = coins.size();
+                                  int t[n+1][amount+1];
+                                  for(int i=0;i less than n+1;i++)
+                                  {
+                                      for(int j=0;j less than amount+1;j++)
+                                      {
+                                          if(j==0)
+                                          {
+                                              t[i][j]=1;
+                                          }
+                                          if(i==0&&j!=0)
+                                          {
+                                              t[i][j]=0;
+                                          }
+                                      }
+                                  }
+                                  for(int i=1;i less than n+1;i++)
+                                  {
+                                      for(int j=1;j less than amount+1;j++)
+                                      {
+                                          if(coins[i-1] less than =j)
+                                          {
+                                              t[i][j]=t[i-1][j]+t[i][j-coins[i-1]];
+                                          }
+                                          else{
+                                              t[i][j] = t[i-1][j];
+                                          }
+                                      }
+                                  }
+                                  return t[n][amount];
+                              }
+                              </code>
+                            </li>
+                            <li>
+                              <h3>Coin Change 2</h3>
+                              <em></em>
+                            </li>
+                          </ol>
+                        </li>
+                      </ul>
                       </article>
                       </section>
                       </main>

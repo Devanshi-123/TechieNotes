@@ -247,7 +247,7 @@ int main()
              </ol>
            </article>
          </section>
-         <section>
+         <section class="main-section" id="impkeywords">
            <header>
              Important Keywords
            </header>
@@ -290,19 +290,105 @@ int main()
               </tr>
               <tr>
                 <td>this</td>
-                <td></td>
+                <td>this is a reference variable that refers to the current object
+                  <img src="https://static.javatpoint.com/images/usage-of-java-this-keyword.png"/>
+                  <code>
+                    //mainly used for constructor chaining
+                    class Student{  
+                      int rollno;  
+                      String name,course;  
+                      float fee;  
+                      Student(int rollno,String name,String course){  
+                      this.rollno=rollno;  
+                      this.name=name;  
+                      this.course=course;  
+                      }  
+                      Student(int rollno,String name,String course,float fee){  
+                      //Call to this() must be the first statement in constructor.
+                      this(rollno,name,course);//reusing constructor  
+                      this.fee=fee;  
+                      }  
+                      void display(){System.out.println(rollno+" "+name+" "+course+" "+fee);}  
+                      }  
+                      class TestThis7{  
+                      public static void main(String args[]){  
+                      Student s1=new Student(111,"ankit","java");  
+                      Student s2=new Student(112,"sumit","java",6000f);  
+                      s1.display();  
+                      s2.display();  
+                      }}  
+                  </code>
+                </td>
               </tr>
               <tr>
                 <td>new</td>
-                <td></td>
+                <td>new keyword is used to create an instance of the class. In other words, it instantiates a class by allocating memory for a new object and returning a reference to that memory. We can also use the new keyword to create the array object.
+                  <ol>
+                    <li>
+                      It is used to create the object.
+                    </li>
+                    <li>
+                      It allocates the memory at runtime.
+                    </li>
+                    <li>
+                      All objects occupy memory in the heap area.
+                    </li>
+                    <li>
+                      It invokes the object constructor.
+                    </li>
+                    <li>
+                      It requires a single, postfix argument to call the constructor
+                    </li>
+                  </ol>
+                  <code>
+                    public class NewExample3 {  
+  
+                      int a,b;  
+                      NewExample3(int a,int b)  
+                      {  
+                          this.a=a;  
+                          this.b=b;  
+                      }  
+                      static int arr[]=new int[3];  
+                      void display()  
+                      {  
+                          System.out.println(a+b);  
+                      }  
+                        
+                      public static void main(String[] args) {  
+                          NewExample3 obj=new NewExample3(10,20);  
+                          obj.display();  
+                          System.out.println("Array length: "+arr.length);  
+                      }  
+                        
+                  }  
+                  </code>
+                </td>
               </tr>
               <tr>
                 <td>const</td>
-                <td></td>
+                <td>We dont use const keyword in java instead we use final keyword.</td>
               </tr>
               <tr>
                 <td>super</td>
-                <td></td>
+                <td>The super keyword in Java is a reference variable which is used to refer immediate parent class object.
+                  <img src="https://static.javatpoint.com/images/usage-of-java-super.jpg"/>
+                  <code>
+                    class Animal{  
+                      String color="white";  
+                      void eat(){System.out.println("eating...");}  
+                      Animal(){System.out.println("animal is created");}  
+                      }  
+                      class Dog extends Animal{  
+                        Dog(){  
+                        super(); //invoke immediate parent class constructor
+                        super.eat();//invoke immediate parent class method
+                        System.out.println(super.color);//refer immediate parent class instance variable
+                        System.out.println("dog is created");  
+                        }  
+                        }  
+                  </code>
+                </td>
               </tr>
              </table>
            </article>
